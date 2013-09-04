@@ -10,13 +10,14 @@ Intersections with signal controls allow competing traffic flows to independentl
 
 Modern intersection signal controllers seek to minimise delay by responding to vehicle demand at each incoming link. The implementation of individual traffic actuated systems differs, but common characteristics include the use of multiple pre-determined phase and cycle plans, created in advance by a traffic engineer. Isolated traffic actuated systems are limited in practice because of the need for traffic engineers to predefine plans, which are unable to adapt to real time changes in demand. 
 
-Adaptive traffic control systems such as the Sydney Coordinated Adaptive Traffic Control System (SCATS), operated for all controlled intersections in New Zealand cities and highways, are successful for reducing delay within high demand road networks, however, existing systems are limited to minimising the number of queued cars or average delay at an intersection. In reality, the cost of motorist delay is not constant per vehicle.  
+Adaptive traffic control systems, such as the Sydney Coordinated Adaptive Traffic Control System (SCATS), operated at all controlled intersections on New Zealand cities and highways; adaptively increment phase plans in response to near-real time traffic conditions and are successful for reducing delay within high demand road networks. Existing systems are limited to minimising the number of queued cars or average delay at an intersection.
 
-% design
-Congestion occurs as a result of interactions between individuals and groups of vehicles within a road network. The success of road transportation and increased rates of "urban sprawl" in large cities has lead to an increase in the number of commercial and private use vehicles competing for capacity on our roads. Traffic demand on road networks is typically time varying, and the flow of traffic in urban centres typically peaks in the early morning and early evening periods, corresponding with commuters travelling to and from workplaces within the city, to urban or suburban residences.
+When an approaching vehicle is stopped at a controlled intersection, a cost is absorbed by the occupants or owners of the vehicle. Costs incurred may be caused by the physical characteristics of a vehicle, for example: a stopped vehicle must use more fuel to accelerate back to a cruise speed; or by the impact of the delay on the vehicle occupants in terms of added commuting time.
 
+As an example of this problem, consider a common "cross-roads" intersection, with two competing approaches. If a large, commercial freight vehicle running late for a ferry and a small family car returning home from a shopping trip are approaching the intersection on two competing roads, who should stop first? There is significantly more cost incurred if the truck is forced to stop at the intersection, in terms of fuel required to accelerate and the potential of being late for the ferry and missing a shipment. In a traditional vehicle actuated or adaptive traffic control system, there is no guarantee on who will be given the opportunity to pass first. The traffic controller is not influenced by the approaching traffic and, depending on the current signal phase timing, it is likely that both vehicles are forced to stop, or the truck is forced to stop. 
 
-Adaptive traffic control systems actively modify signal phase and cycle lengths and ordering of phases within a cycle in response to near real-time traffic demand. New Zealand city and state highway intersections are all operated using the Sydney Coordinated Adaptive Traffic Control System (SCATS). 
+% relate this back to the project here
+
 \section {Motivations}
 
 Urban congestion is a significant problem facing the New Zealand transportation industry. In 2013, an independent consultation commissioned by the New Zealand Transport Agency (NZTA) found that the increase in transport cost due to congestion within Auckland City could be as high as 1.2 billion dollars annually when compared to freely flowing traffic \cite{wallis2013costs}. 
@@ -44,5 +45,7 @@ This paper presents three primary contributions to the field of traffic signal c
 
 
 
+% design
+%Congestion occurs as a result of interactions between individuals and groups of vehicles within a road network. The success of road transportation and increased rates of "urban sprawl" in large cities has lead to an increase in the number of commercial and private use vehicles competing for capacity on our roads. Traffic demand on road networks is typically time varying, and the flow of traffic in urban centres typically peaks in the early morning and early evening periods, corresponding with commuters travelling to and from workplaces within the city, to urban or suburban residences.
 
 
