@@ -1,0 +1,62 @@
+%% $RCSfile: proj_proposal.tex,v $
+%% $Revision: 1.2 $
+%% $Date: 2010/04/23 02:40:16 $
+%% $Author: kevin $
+
+\documentclass[11pt, a4paper, twoside, openright]{report}
+\usepackage{float}
+\usepackage{url}
+\usepackage{harvard}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[toc,page]{appendix}
+
+\newfloat{fig}{thp}{lof}[chapter]
+\floatname{fig}{Figure}
+
+\title{Priority Based Traffic Control}
+\author{James McCann}
+
+\usepackage[image,ecs]{vuwproject} 
+\supervisor{Paul Teal}
+\otherdegree{Bachelor of Engineering (Hons)}
+
+\date{}
+
+\begin{document}
+
+\frontmatter
+
+\begin{abstract}
+
+This document describes research, design, and implementation achievement to date for a method for adaptive traffic control based on vehicle priority, and a simulation to evaluate the effectiveness of the developed method. 
+  
+\end{abstract}
+
+\maketitle
+
+%\tableofcontents
+
+% we want a list of the figures we defined
+%\listof{fig}{Figures}
+
+\mainmatter
+
+\include{introduction}
+\include{background}
+\include{design}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{ieeetr}
+\bibliographystyle{harvard}
+
+\bibliography{sample}
+
+\include{appndx}
+
+\end{document}

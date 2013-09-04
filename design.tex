@@ -1,0 +1,48 @@
+\chapter{Design}
+
+The following chapter discusses the assumptions, models, and design methodology of the Priority Based Traffic Controller (PBTC) system, and the developed simulation tool. The project outcomes discussed in this chapter are:
+
+\begin{itemize}
+\item design of an appropriate model of individual vehicle priority,
+\item design of a simulation tool as a platform for implementing the PBTC system,
+\item design of a phase control PBTC algorithm, to be operated on a 2 phase intersection,
+\item evaluation methodology and relevant measures of effectiveness used to compare the performance of the PBTC system to existing alternatives.
+\end{itemize}
+
+\section{PBTC System Architecture}
+
+\section{Priority Modeling}
+
+Representative modeling of the priority of vehicles and passengers approaching an intersection was required to effectively design, develop and evaluate the PBTC system within a realistic setting. 
+
+The priority of an individual vehicle is defined as the cost, measured in cents, of stopping or delaying the vehicle at a PBTC controlled intersection. A number of heuristics have been aggregated to produce a single cost value:
+
+% list out individual cost measures here
+\begin{itemize}
+\item 
+\item 
+\item 
+\item 
+\end{itemize}
+
+Emphasis has been placed on approximations of cost components that can be calculated efficiently, in real-time, by a traffic light controller. While accurate measurements for the stopping cost and journey fuel consumption can be made after a vehicle has passed through an intersection, it is not possible to produce an accurate model for estimating fuel consumption for each approaching vehicle as speed and acceleration, and as a result fuel consumption, is dependent not only on the physical characteristics of the vehicle and driver behaviour, but also the speed and acceleration of surrounding vehicles. In order to develop realistic approximations of cost components, the following assumptions have been made about the physical characteristics of vehicles and driver behaviours:
+
+% list of the high level assumptions here 
+\begin{itemize}
+\item 
+\item 
+\item 
+\item 
+\end{itemize}
+
+% subsections discussing the design of each measure here:
+
+\section{Simulator Design}
+
+\section{Optimisation Algorithm Design}
+
+\section{Evaluation Methodology}
+
+
+
+

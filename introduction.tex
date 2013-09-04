@@ -1,0 +1,48 @@
+\chapter{Introduction}
+
+Transportation is fundamental to the modern global economy, encouraging growth and job creation, trade, and quality of life. The success of road transportation and steady increase in the number of individual vehicles in use has resulted in an ongoing strain on societies to provide infrastructure capable of satisfying demand. 
+
+Widespread utilisation of road transport for commercial and private use has lead to significant traffic congestion in densely populated, urban environments as demand outstrips the capacity of roading networks \cite{euro2011whitepaper}. As the complexity of road networks increases, so too does the need for control systems to safely and efficiently manage access to shared road by competing flows of traffic. 
+
+Intersections with signal controls allow competing traffic flows to independently make use of the limited capacity of intersecting sections of  two or more roads. To avoid collisions, allowing traffic to flow through a controlled intersection requires stopping all competing traffic flows also demanding the intersection. As a result, controlled intersection delay is one of the most significant causes of congestion in urban road networks.
+
+\section{Problem}
+
+Modern intersection signal controllers seek to minimise delay by responding to vehicle demand at each incoming link. The implementation of individual traffic actuated systems differs, but common characteristics include the use of multiple pre-determined phase and cycle plans, created in advance by a traffic engineer. Isolated traffic actuated systems are limited in practice because of the need for traffic engineers to predefine plans, which are unable to adapt to real time changes in demand. 
+
+Adaptive traffic control systems such as the Sydney Coordinated Adaptive Traffic Control System (SCATS), operated for all controlled intersections in New Zealand cities and highways, are successful for reducing delay within high demand road networks, however, existing systems are limited to minimising the number of queued cars or average delay at an intersection. In reality, the cost of motorist delay is not constant per vehicle.  
+
+% design
+Congestion occurs as a result of interactions between individuals and groups of vehicles within a road network. The success of road transportation and increased rates of "urban sprawl" in large cities has lead to an increase in the number of commercial and private use vehicles competing for capacity on our roads. Traffic demand on road networks is typically time varying, and the flow of traffic in urban centres typically peaks in the early morning and early evening periods, corresponding with commuters travelling to and from workplaces within the city, to urban or suburban residences.
+
+
+Adaptive traffic control systems actively modify signal phase and cycle lengths and ordering of phases within a cycle in response to near real-time traffic demand. New Zealand city and state highway intersections are all operated using the Sydney Coordinated Adaptive Traffic Control System (SCATS). 
+\section {Motivations}
+
+Urban congestion is a significant problem facing the New Zealand transportation industry. In 2013, an independent consultation commissioned by the New Zealand Transport Agency (NZTA) found that the increase in transport cost due to congestion within Auckland City could be as high as 1.2 billion dollars annually when compared to freely flowing traffic \cite{wallis2013costs}. 
+
+% where does this sentence go?
+The New Zealand Ministry of Transport (MoT) 2008 transport strategy identifies affordability and efficiency as two primary goals of transportation development over the next three decades and recommends future congestion management strategies should more efficient use of existing network capacity without the need to add expensive new infrastructure. Improving the effectiveness of traffic signal controls at road intersections has potential benefits for all controlled intersections in New Zealand, at significantly lower costs than infrastructure changes.
+
+This project presents a new methodology for adaptive traffic control that considers individual vehicles waiting at an intersection using dynamically calculated \emph{priority} value, communicated from approaching vehicles to an intersection traffic controller.
+
+\section{Priority Based Signal Control}
+
+Vehicle priority modelling allows for consideration of a wide range of vehicle and motorist properties, including size and weight, fuel efficiency, number of passengers, individual passenger urgency, and purpose of transit. Inter-vehicular, short range, ad hoc communication is used between vehicles and a traffic controller in order to receive responsive, real-time information about the location and properties of vehicles approaching an intersection. 
+
+Inter-vehicle communication technology is not yet in use in New Zealand vehicles, but advances in wireless technologies suggests that devices with such capability may be commonplace on our roads within the next decade. By simulating the possibilities of a fully connected transport fleet, we hope to encourage development in this area.
+
+\section{Contributions}
+
+This paper presents three primary contributions to the field of traffic signal control research and implementation:
+
+\begin{itemize}
+\item \textbf{Vehicular Priority Model}, a model for estimating the priority of individual vehicles within a road network; based upon passenger urgency, cost of stoppage, cost of delay, and passenger occupancy.
+\item \textbf{Priority Based Traffic Control Algorithm}, an on-line algorithm for determining signal phase times at a controlled intersection based on priority of real-time traffic, determined by one-way, vehicle-controller communication. 
+\item \textbf{Open-Source Simulator Implementation}, an implementation of the Priority Based Traffic Control algorithm above, as well as modifications to the Movsim Traffic Simulator to allow adding of new traffic control strategies to be tested.
+\end{itemize}
+
+
+
+
+

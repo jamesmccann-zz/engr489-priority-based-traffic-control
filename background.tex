@@ -1,0 +1,70 @@
+\chapter{Motivations, Background and Related Work}
+
+\section{Terminology}
+
+Traffic control engineering involves specific terminology to refer to different signal controls, timing plans, and controller types. This section offers a brief introduction of traffic signal control and terminology that may be used throughout the remainder of this report.
+
+Modern intersections with traffic signals are controlled by a roadside \emph{signal controller}. Controllers switch power to signal lanterns and determine the sequence of display for each set of lights, operating under the safety requirement that no two conflicting flows receive green signals simultaneously. A typical controller operates lights in sequences called \emph{phases}, which are dynamic length allocations of green light time to a set of non-conflicting flows at an intersection. Typically, modern controllers include the following fixed or dynamic time allocations within a phase:
+
+\begin{itemize}
+\item \emph{late start time}, a fixed length of time a green light may be delayed for safety of other movements (e.g. pedestrian protection)
+\item \emph{minimum green time}, a fixed length of time that a phase must operate before changing
+\item \emph{inter-green time}, a fixed length of time required to operate amber and red signals at the end of a phase, typically at least 6 seconds. 
+\item \emph{extension green time}, a dynamic length of time allocated to a phase determined after all required fixed times have been deducted from the total phase tie. 
+\item \emph{maximum green time}, if the addition of the previous four time allocations exceeds the fixed maximum green time the phase is forced to change. 
+\end{itemize}
+
+A \emph{cycle} (or \emph{plan}) is an ordered sequence of one or more phases which is repeated by a controller. A fixed cycle traffic controller runs each phase for a fixed length of time within a static cycle. An actuated traffic controller can respond to sensor inputs from lane road loops and skip phases that are not in demand. Adaptive traffic controllers differ in implementation but typically can extend or shorten the length of a phase if a queue is completely cleared midway through a phase. The length of a cycle of an adaptive controller can be adapted to demand, typically running for a shorter length of time during quiet traffic and increasing in length to reduce queuing and satisfy high demand peaks \cite{scatstraining}.
+
+An intersection has a given \emph{capacity}, defined as the maximum sustainable flow rate at which vehicles or pedestrians can travel through the intersection in a given time period. Capacity is dependant on the geometric layout of an intersection (e.g. width of road, number of lanes), driving and surface conditions, and traffic conditions. The \emph{degree of saturation} of an intersection is a ratio of arrival flow rate with respect to capacity of each approach for a given period. Arrival flow rate, also called \emph{demand flow}, refers to the number of vehicles or pedestrians arriving during a given period, measured from the back of a queue \cite{sidraglossary}. A section of road is said to be saturated if the traffic flow is equivalent to the capacity of the road at a given speed, such that any increase in flow will have a negative impact on the flow through the system. Any section of road where demanded traffic flow exceeds capacity is said to be \emph{congested} \cite{wallis2013costs}.
+
+\section{Signal Control Optimisation Techniques}
+
+This section provides a review of published literature on existing implementations of adaptive traffic control systems in use globally and within New Zealand, and identifies the benefits and limitations imposed by the use of these systems. Information related to the Sydney Coordinated Adaptive Traffic System (SCATS) is partially based on personal experience at the NZTA Wellington Traffic Operations Centre, in Johnsonville. 
+
+\subsection{Sydney Coordinated Adaptive Traffic System}
+
+SCATS is a centralised, coordinated, adaptive traffic control system \cite{lowrie1982scats}. In New Zealand, all controlled intersections operate on isolated control or within a coordinated network under the Sydney Coordinated Adaptive Traffic System (SCATS). SCATS operations within New Zealand are controlled by the New Zealand Transport Association (NZTA), for state highways and inter-city motorways; and local body councils where appropriate.
+
+ SCATS operates on a networked computer with two-way communication to individual SCATS connected traffic controllers over broadband (or modem) connections. SCATS interfaces with roadside traffic signal control units, requesting phase times, skipping phases, or adjusting cycle lengths on an adaptive basis. A traffic control engineer can monitor traffic demand and flow rates for an intersection and manually adjust SCATS calculated phases or cycle lengths if required.
+
+SCATS incrementally adjusts the planned phase times of a traffic signal controller by responding to traffic data collected by the signal controller during the previous cycle. Inputs to SCATS from each individual controller include the number of vehicles and flow rate per each intersection approach, the expected and actual phase times, and the degree of saturation for the intersection.  The SCATS system calculates and requests phase times and cycle lengths to minimise the degree of saturation of an intersection, defined as the ratio of effectively used green time to total available green time \cite{wolshon1999scats}. The proportion of effectively used green time is typically increased using longer cycles and higher split times for high demand approaches. 
+
+In a coordinated traffic control system, emphasis is given to ensuring that green times between two nearby intersections are scheduled in such a way as to allow for synchronised green phases, preventing vehicles arriving from an upstream intersection being required to stop downstream. The effect of this synchronisation is colloquially known as a "corridor of green" and will be familiar to most New Zealand inner city motorists. SCATS intersections are organised into groups called subsystems, typically based on proximity. A traffic control engineer identifies a critical intersection within each subsystem in a road network. The cycle time is optimised for the critical intersection and neighbouring intersections adopt the same cycle time to provide naive coordination of phases and ensure undersaturation of the critical intersection \cite{kilby2010rta}.
+
+%The SCATS system works well for intersection sites with well established traffic flow periods, for example, highway intersections that have relatively even demand with single morning and evening peaks. 
+In practice, SCATS is limited by the ability to adjust timings only at the conclusion of a cycle, and the relatively small incremental adjustments made between cycles. During peaks of high intersection demand, the time for a cycle length increases, typically as long as 120 seconds or higher. Adjustments made to phase and cycle times at the end of each cycle are typically within the range of 5\%-10\%. As a result, SCATS can be slow to respond to disruptive periods of high demand and requires manual intervention from traffic engineers to handle such situations, for example, sporting or musical events with large numbers of fans entering and leaving a stadium at the same time. 
+
+\subsection{Splits-Cycle-Offsets-Optimization-Technique}
+
+The Splits-Cycle-Offsets-Optimization-Technique (SCOOT) is an adaptive traffic control system first developed in the 1980s and deployed widely in the United Kingdom. %check that, ref here
+
+The primary objective of SCOOT is to minimise the sum of the average traffic queues in an area. A limit of this optimisation is the complete reduction of queues in a network, such that every approaching vehicle receives a green signal, not possible in practice. \cite{bell1992future,robertson1991optimizing}. SCOOT modelling is based on construction of so called "cyclic flow profiles", online relative to real-time demand measured by detectors upstream of an intersection. A cyclic flow profile is a measure of a one-way flow of vehicles past a point (e.g. stop line) during a time step of a signal cycle. The use of cyclic flow profiles generated online in respond to actual traffic demand is promoted as an advantage of SCOOT over fixed-plan adaptive systems such as SCATS, as SCOOT does not require a traffic engineer to predetermine a set of plans to model traffic flow or congestion at an intersection.
+
+The SCATS and SCOOT control systems are also limited by the reliability of communication links between signal controllers and the central optimiser. If communication is interrupted or lost, signal controllers will revert to a fallback mode, using predefined plans designed by a traffic engineer. In order to maintain integrity of a network in the event of communication loss, fallback plans are updated regularly by traffic control engineers using historical time of day data collected over a reasonable time period, a costly operation which requires continuous maintenance. In addition, SCATS and SCOOT both rely on the use of inductive loops installed within the pavement of a road at intersection stop-lines or at an upstream location, which must be replaced each time the surface of the road is maintained  \cite{bell1992future}.
+
+\section{Lookahead Based Control}
+
+Recent work has explored alternatives to phase based control. \citeasnoun{van2008movement} present a "movement-based" lookahead optimisation algorithm that allows vehicle demand to pass through an intersection in distinct \emph{movements}, which represent a passage of traffic from an approach lane to another exit lane, rather than structured phases or stages which are typically predefined sets of one or more movements. Movement-based control allows for clearance of more approaches by starting and ending individual movements of non-conflicting movements of traffic rather than a entire phases. The use of movements in control optimisation reduces the search space required by a decision tree, allowing a signal controller to look ahead to a N-second event horizon.
+
+% need more on ALLONS-D here, maybe needs it's own section
+Similar algorithms implementing lookahead optimisation techniques have also been explored using traditional phase control, seeking to minimise total delay at an intersection, with significantly improved results over Webster's method \cite{porche1996allonsd}, although this work is limited by lack of comparison with traffic actuated or adaptive controllers. 
+
+
+\section{Inter-Vehicular Communication}
+
+The ubiquity of mobile communication devices and modern wireless capabilities have offered new possibilities for inter-vehicle communication within road networks. Previous research suggests that short-range wireless communication devices installed in road vehicles can be used to form mobile ad-hoc networks between near proximity clusters of traffic \cite{adaptive2007grad,nadeem2004trafficview,yang2004vehicle}.
+
+\citeasnoun{adaptive2007grad} discuss an implementation for car-to-car communication and car-to-controller communication as a replacement for loop detection used by adaptive traffic controllers. In the author's implementation, vehicles periodically transmit information about themselves and other nearby vehicles to a traffic controller using one-hop broadcasts. A traffic signal controller maintains a record of each known vehicle within range and optimises cycle length and phase timings based for the succeeding phase based on real-time information from each approach. Experimentation results of the study suggest that adaptive traffic control using a simple traffic actuated method out-performs a predetermined phase controller by a significant factor when total intersection delay is the primary measure of effectiveness at an intersection. While these results are promising, the work is limited in scope by the use of a predetermined phase time controller as a baseline for experimentation. The increase in performance measured by the authors does not take into account the advantages of existing traffic actuated or adaptive controller schemes over an isolated, fixed-cycle controller; which are likely to be significant. 
+
+Wireless communication between vehicles and signal controllers can provide more information at an earlier stage of approach than loop detectors, including characteristics of a vehicle (number of passengers, size, weight, type of activity), speed of approach and current position. Research in this field has explored the use of vehicle-to-vehicle communication for early warning safety systems, collision avoidance, and as a means of informing vehicle passengers about road network conditions; suggesting widespread benefits for use of the technology beyond traffic modelling at intersections \cite{nadeem2004trafficview,yang2004vehicle}.
+
+% do something with this shit 
+%Signal control optimisation has been well researched with respect to minimising the total delay for all vehicles at a controlled intersection. Webster's method \cite{webster1958}, is a widely adopted and researched method for estimating optimal cycle length for minimal delay at a controlled intersection. For a saturated intersection, Webster's method provides an optimal cycle length with respect to minimal time lost between phases, between flows of opposing traffic. 
+
+
+
+
+
+
+
