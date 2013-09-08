@@ -4,7 +4,19 @@ Transportation is fundamental to the modern global economy, encouraging growth a
 
 Widespread utilisation of road transport for commercial and private use has lead to significant traffic congestion in densely populated, urban environments as demand outstrips the capacity of roading networks \cite{euro2011whitepaper}. As the complexity of road networks increases, so too does the need for control systems to safely and efficiently manage access to shared road by competing flows of traffic. 
 
-Intersections with signal controls allow competing traffic flows to independently make use of the limited capacity of intersecting sections of  two or more roads. To avoid collisions, allowing traffic to flow through a controlled intersection requires stopping all competing traffic flows also demanding the intersection. As a result, controlled intersection delay is one of the most significant causes of congestion in urban road networks.
+Intersections with signal controls allow competing traffic flows to independently make use of the limited capacity of intersecting sections of  two or more roads. To avoid collisions, allowing traffic to flow through a controlled intersection requires stopping all competing traffic flows also demanding the intersection. As a result, controlled intersection delay is one of the most significant causes of congestion costs in urban road networks.
+
+This project seeks to improve cost effectiveness of traditional traffic control techniques by considering the individual costs associated with stopping or delaying vehicles approaching a controlled intersection.
+
+\section {Motivations}
+
+Urban congestion is a significant problem facing the New Zealand transportation industry. In 2013, an independent consultation commissioned by the New Zealand Transport Agency (NZTA) found that the increase in transport cost due to congestion within Auckland City could be as high as 1.2 billion dollars annually when compared to freely flowing traffic \cite{wallis2013costs}. 
+
+% where does this sentence go?
+The New Zealand Ministry of Transport (MoT) 2008 transport strategy identifies affordability and efficiency as two primary goals of transportation development over the next three decades and recommends future congestion management strategies should more efficient use of existing network capacity without the need to add expensive new infrastructure. Improving the effectiveness of traffic signal controls at road intersections has potential benefits for all controlled intersections in New Zealand, at significantly lower costs than infrastructure changes.
+
+% move this to abstract?
+Advances in wireless technologies suggests that inter-vehicle communication technology may be commonplace on New Zealand roads within the next decade. By simulating the possibilities of a fully connected transport system, we hope to encourage development in this area.
 
 \section{Problem}
 
@@ -17,16 +29,6 @@ When an approaching vehicle is stopped at a controlled intersection, a cost is a
 As an example of this problem, consider a common "cross-roads" intersection, with two competing approaches. If a large, commercial freight vehicle running late for a ferry and a small family car returning home from a shopping trip are approaching the intersection on two competing roads, who should be given right of way? There is significantly more cost incurred if the truck is forced to stop at the intersection, including cost of fuel required to accelerate and the potential of being late for the ferry and missing a shipment. In a traditional vehicle actuated or adaptive traffic control system, there is no guarantee on who will be given the opportunity to pass first. The traffic controller is not influenced by the approaching traffic and, depending on the current signal phase timing, it is likely that both vehicles are forced to stop, or the truck is forced to stop. 
 
 This project presents a new methodology for adaptive traffic control that considers individual vehicles approaching or waiting at an intersection based on a dynamically calculated \emph{priority} value, calculated using properties of each vehicle that can be communicated to a traffic controller using wireless devices embedded in vehicles.
-
-\section {Motivations}
-
-Urban congestion is a significant problem facing the New Zealand transportation industry. In 2013, an independent consultation commissioned by the New Zealand Transport Agency (NZTA) found that the increase in transport cost due to congestion within Auckland City could be as high as 1.2 billion dollars annually when compared to freely flowing traffic \cite{wallis2013costs}. 
-
-% where does this sentence go?
-The New Zealand Ministry of Transport (MoT) 2008 transport strategy identifies affordability and efficiency as two primary goals of transportation development over the next three decades and recommends future congestion management strategies should more efficient use of existing network capacity without the need to add expensive new infrastructure. Improving the effectiveness of traffic signal controls at road intersections has potential benefits for all controlled intersections in New Zealand, at significantly lower costs than infrastructure changes.
-
-% move this to abstract?
-Advances in wireless technologies suggests that inter-vehicle communication technology may be commonplace on New Zealand roads within the next decade. By simulating the possibilities of a fully connected transport system, we hope to encourage development in this area.
 
 \section{Priority Based Signal Control}
 
