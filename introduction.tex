@@ -14,9 +14,9 @@ Adaptive traffic control systems, such as the Sydney Coordinated Adaptive Traffi
 
 When an approaching vehicle is stopped at a controlled intersection, a cost is absorbed by the occupants or owners of the vehicle. Costs incurred may be caused by the physical characteristics of a vehicle, for example: a stopped vehicle must use more fuel to accelerate back to a cruise speed; or by the impact of the delay on the vehicle occupants in terms of added commuting time.
 
-As an example of this problem, consider a common "cross-roads" intersection, with two competing approaches. If a large, commercial freight vehicle running late for a ferry and a small family car returning home from a shopping trip are approaching the intersection on two competing roads, who should stop first? There is significantly more cost incurred if the truck is forced to stop at the intersection, in terms of fuel required to accelerate and the potential of being late for the ferry and missing a shipment. In a traditional vehicle actuated or adaptive traffic control system, there is no guarantee on who will be given the opportunity to pass first. The traffic controller is not influenced by the approaching traffic and, depending on the current signal phase timing, it is likely that both vehicles are forced to stop, or the truck is forced to stop. 
+As an example of this problem, consider a common "cross-roads" intersection, with two competing approaches. If a large, commercial freight vehicle running late for a ferry and a small family car returning home from a shopping trip are approaching the intersection on two competing roads, who should be given right of way? There is significantly more cost incurred if the truck is forced to stop at the intersection, including cost of fuel required to accelerate and the potential of being late for the ferry and missing a shipment. In a traditional vehicle actuated or adaptive traffic control system, there is no guarantee on who will be given the opportunity to pass first. The traffic controller is not influenced by the approaching traffic and, depending on the current signal phase timing, it is likely that both vehicles are forced to stop, or the truck is forced to stop. 
 
-% relate this back to the project here
+This project presents a new methodology for adaptive traffic control that considers individual vehicles approaching or waiting at an intersection based on a dynamically calculated \emph{priority} value, calculated using properties of each vehicle that can be communicated to a traffic controller using wireless devices embedded in vehicles.
 
 \section {Motivations}
 
@@ -25,13 +25,12 @@ Urban congestion is a significant problem facing the New Zealand transportation 
 % where does this sentence go?
 The New Zealand Ministry of Transport (MoT) 2008 transport strategy identifies affordability and efficiency as two primary goals of transportation development over the next three decades and recommends future congestion management strategies should more efficient use of existing network capacity without the need to add expensive new infrastructure. Improving the effectiveness of traffic signal controls at road intersections has potential benefits for all controlled intersections in New Zealand, at significantly lower costs than infrastructure changes.
 
-This project presents a new methodology for adaptive traffic control that considers individual vehicles waiting at an intersection using dynamically calculated \emph{priority} value, communicated from approaching vehicles to an intersection traffic controller.
+% move this to abstract?
+Advances in wireless technologies suggests that inter-vehicle communication technology may be commonplace on New Zealand roads within the next decade. By simulating the possibilities of a fully connected transport system, we hope to encourage development in this area.
 
 \section{Priority Based Signal Control}
 
 Vehicle priority modelling allows for consideration of a wide range of vehicle and motorist properties, including size and weight, fuel efficiency, number of passengers, individual passenger urgency, and purpose of transit. Inter-vehicular, short range, ad hoc communication is used between vehicles and a traffic controller in order to receive responsive, real-time information about the location and properties of vehicles approaching an intersection. 
-
-Inter-vehicle communication technology is not yet in use in New Zealand vehicles, but advances in wireless technologies suggests that devices with such capability may be commonplace on our roads within the next decade. By simulating the possibilities of a fully connected transport fleet, we hope to encourage development in this area.
 
 \section{Contributions}
 
@@ -42,7 +41,6 @@ This paper presents three primary contributions to the field of traffic signal c
 \item \textbf{Priority Based Traffic Control Algorithm}, an on-line algorithm for determining signal phase times at a controlled intersection based on priority of real-time traffic, determined by one-way, vehicle-controller communication. 
 \item \textbf{Open-Source Simulator Implementation}, an implementation of the Priority Based Traffic Control algorithm above, as well as modifications to the Movsim Traffic Simulator to allow adding of new traffic control strategies to be tested.
 \end{itemize}
-
 
 
 % design
