@@ -1,11 +1,11 @@
 \chapter{Design}
 
-The following chapter discusses the assumptions, models, and design methodology of the Priority Based Traffic Controller (PBTC) system, and the developed simulation tool. The project outcomes discussed in this chapter are:
+The following chapter discusses the assumptions, models, and design methodology of PBTC and the developed simulation tool. The outcomes discussed in this chapter are:
 
 \begin{itemize}
 \item design of an appropriate model of individual vehicle priority,
 \item design of a simulation tool as a platform for implementing the PBTC system,
-\item design of a phase control PBTC algorithm, to be operated on a 2 phase intersection,
+\item design of a phase control algorithm, to be operated on a 2 phase intersection,
 \item evaluation methodology and relevant measures of effectiveness used to compare the performance of the PBTC system to existing alternatives.
 \end{itemize}
 
@@ -13,29 +13,31 @@ The following chapter discusses the assumptions, models, and design methodology 
 
 \section{Priority Modeling}
 
-Representative modeling of the priority of vehicles and passengers approaching an intersection was required to effectively design, develop and evaluate the PBTC system within a realistic setting. 
+Representative modeling of the priority of vehicles and passengers approaching an intersection is required to effectively design, develop and evaluate the PBTC system within a realistic setting. 
 
-The priority of an individual vehicle is defined as the cost, measured in cents, of stopping or delaying the vehicle at a PBTC controlled intersection. A number of heuristics have been aggregated to produce a single cost value:
+The priority of an individual vehicle is proportional the cost, measured in cents, of stopping and/or delaying the vehicle at a PBTC controlled intersection. A single cost figure is calculated by an aggregation of the current effective delay cost, potential stopping cost, and potential delay cost for the vehicle. The operational stopping cost calculation is based on the velocity, acceleration, mass, and engine efficiency of a vehicle. Delay cost is based upon the class of vehicle, an individual notion of urgency, and number of passengers.
 
-% list out individual cost measures here
-\begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\end{itemize}
-
-Emphasis has been placed on approximations of cost components that can be calculated efficiently, in real-time, by a traffic light controller. While accurate measurements for the stopping cost and journey fuel consumption can be made after a vehicle has passed through an intersection, it is not possible to produce an accurate model for estimating fuel consumption for each approaching vehicle as speed and acceleration, and as a result fuel consumption, is dependent not only on the physical characteristics of the vehicle and driver behaviour, but also the speed and acceleration of surrounding vehicles. In order to develop realistic approximations of cost components, the following assumptions have been made about the physical characteristics of vehicles and driver behaviours:
+Emphasis has been placed on approximations of cost components that can be calculated efficiently in real-time by a traffic light controller. In order to develop realistic approximations of cost components, the following assumptions have been made about the physical characteristics of vehicles and driver behaviours:
 
 % list of the high level assumptions here 
 \begin{itemize}
-\item 
-\item 
-\item 
-\item 
+\item vehicles are classed as light or heavy, with petrol and diesel engines respectively,
+\item vehicle mass, engine efficiency, and aerodynamic properties are considered constant per vehicle class. Table X.XX shows the constants representing the physical properties of each vehicle class,
+\item the price per litre for petrol fuel is \$2.24, and diesel fuel \$1.65 (New Zealand Dollars), based upon market values at the time of writing.
 \end{itemize}
 
 % subsections discussing the design of each measure here:
+
+\subsection{Operational Stopping Cost}
+
+The operational stopping cost of an individual vehicle is the economic cost expended when the vehicle is delayed or forced to stop at a controlled intersection. The stopping cost of a vehicle is proportional to the cruise speed of the vehicle before the stop, and recognises that a vehicle being forced to stop expends a certain amount of fuel to reach the speed of travel before stopping.
+
+Modern cars are typically capable of outputting the instantaneous or cumulative fuel consumption for a journey in the form of a dashboard notification. This instantaneous fuel consumption rate could be received as part of a priority message from a vehicle upstream of a traffic signal controller, however fuel consumption rate alone is not appropriate for estimating the operational stopping cost of a vehicle should a controlled intersection prefer an alternative flow of traffic, as it is dependent on vehicle speed and acceleration at the instant of communication.
+
+A more appropriate measure of stopping cost can be found by considering the cost of the deceleration and acceleration stages before and after a controlled intersection, as it is calculated relative to the approaching velocity and/or acceleration values. Most modern car engines use a fuel cutoff during deceleration to prevent unnecessary fuel use, so this value can be approximated as 0 (Treiber & Kesting, 2013). As a result, the cost of stopping can be modelled solely on the acceleration component of a stop at an intersection.
+
+% rephrase/move to stopping cost section
+%While accurate measurements for the stopping cost and journey fuel consumption can be made after a vehicle has passed through an intersection, it is not possible to produce an accurate model for estimating fuel consumption for each approaching vehicle as speed and acceleration and as a result fuel consumption, is dependent not only on the physical characteristics of the vehicle and driver behaviour, but also the speed and acceleration of surrounding vehicles. 
 
 \section{Simulator Design}
 
@@ -45,4 +47,7 @@ Emphasis has been placed on approximations of cost components that can be calcul
 
 
 
-
+%A number of heuristics have been aggregated to produce a single cost value:
+% list out individual cost measures here?
+%\begin{itemize}
+%\end{itemize}
