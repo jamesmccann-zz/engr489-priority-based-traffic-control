@@ -11,7 +11,12 @@
 \usepackage{array}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{booktables}
 \usepackage[toc,page]{appendix}
+\usepackage{algorithm}
+\usepackage[options]{algorithm2e}
+
+\graphicspath{{figures/}}
 
 \newfloat{fig}{thp}{lof}[chapter]
 \floatname{fig}{Figure}
@@ -31,7 +36,11 @@
 
 \begin{abstract}
 
-This document describes research, design, and implementation achievement to date for a method for adaptive traffic control based on vehicle priority, and a simulation to evaluate the effectiveness of the developed method. 
+The rising ubiquity of internet connected devices and wireless networks offers a bright future for intelligent transport systems in urban environments. By equipping individual vehicles with wireless devices capable of communicating with traffic signal controllers, adaptive traffic control schemes can be used to prioritise traffic flows, minimise delay based on traffic priority, and reduce the rising costs of congestion within our urban networks.
+
+The Priority Based Traffic Control system (PBTC) is a tool for simulating the opportunities allowed by a fully connected traffic fleet. By establishing wireless communication with vehicles approaching a controlled intersection and estimating the operational stopping cost and delay cost for each vehicle, the PBTC system can adapt to local traffic conditions in real time, minimising the congestion costs incurred by road users. Lookahead estimation allows a signal controller to extend green time dynamically to further reduce the cost associated with phase changes. 
+
+This paper presents the PBTC system architecture, methods used to estimate and minimise the costs of delaying approaching traffic at a controlled intersection, and results of evaluation against vehicle actuated and adaptive control methods.
   
 \end{abstract}
 
