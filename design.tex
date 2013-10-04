@@ -4,9 +4,8 @@ The following chapter discusses design decisions and justifications of PBTC and 
 
 \begin{itemize}
 \item design of an appropriate model of individual vehicle priority,
-\item design of a simulation tool as a platform for implementing the PBTC system,
 \item design of a phase control algorithm, to be operated on a 2 phase intersection,
-\item evaluation methodology and relevant measures of effectiveness used to compare the performance of the PBTC system to existing alternatives.
+\item evaluation methodology and relevant measures of effectiveness used to compare the performance of a developed PBTC system to existing alternatives.
 \end{itemize}
 
 \section{Priority Modeling}
@@ -105,26 +104,14 @@ Where 0.007 is the delay cost in cents per second, and $s(u)$ is a constant for 
 
 Figure ~\ref{delaycosturgency} shows the relationship between delay cost and time delayed for each of the five discrete urgency values for up to sixty seconds of delay. 
 
-For simplicity, the PBTC system assumes all urgency values are constant and do not change during the time a vehicle is waiting at an intersection. In a real-world system this model is likely to be too simplistic. Depending on the initial urgency of the vehicle, as the length of time that vehicle has been delayed increases, their urgency to pass the intersection will also increase and the costs of delay will compound. There is also a limit to this relationship, for example, if the occupants of a vehicle are delayed to the point that they miss their meeting, flight, or other appointment, their urgency may reduce significantly and/or they may change destination and return home. Modeling these conditions is beyond the scope of this project and not relevant within the simulation environment. 
+For simplicity, the PBTC system assumes all urgency values are constant and do not change during the time a vehicle is waiting at an intersection. In a real-world system this model is likely to be too simplistic. Depending on the initial urgency of the vehicle, as the length of time that vehicle has been delayed increases, their urgency to pass the intersection will also increase and the costs of delay will compound. There is also a limit to this relationship, for example, if the occupants of a vehicle are delayed to the point that they miss their meeting, flight, or other appointment, their urgency may reduce significantly and/or they may change destination and return home. Modeling these cases was not determined to be relevant within the simulation environment. 
 
 \begin{figure}[]
 \centering
-	\includegraphics[scale=0.5]{delay_cost_per_urgency.eps}
+	\includegraphics[scale=0.65]{delay_cost_per_urgency.eps}
 	\caption{Cost of delay per time for a range of occupant urgency values, from time of zero seconds up to sixty seconds. }
 \label{delaycosturgency}
 \end{figure}
-
-\section{Simulator Design}
-
-\subsection {MovSim}
-
-A primary challenge of measuring and evaluating performance of an adaptive traffic control system is the requirement to simulate realistic traffic conditions with sufficiently measurable results. Software for simulating traffic control methods is typically developed by vendors of a particular system and as such is proprietary and not available for research. Because of this, an open-source tool called MovSim has been used to develop and evaluate the PBTC system. 
-
-MovSim (Multi-model Open-source Vehicular-traffic Simulator) is an open-source, Java-based traffic simulator implementing multiple time-continuous, car-following traffic models designed for investigating traffic dynamics; currently under active development. MovSim is based upon the work of \citeasnoun{kesting2013traffic} and implements a wide range of configurable vehicle-following, acceleration, and lane changing models that determine individual vehicle movement within the simulation. MovSim also has a stand-alone visualisation engine that is used to view the progress of a simulation at runtime. Visualising the state of running simulations is beneficial for validating intersection layouts and exploring the interaction between individual vehicles and traffic signals.
-
-Limitations of using the MovSim project as a base simulation tool for the PBTC system include lack of support for bi-directional traffic flow and turning behaviour at intersections, both requirements for accurate modeling of a real world road network. Both of these features are areas of future development for the MovSim project. The sophisticated vehicle modeling capabilities of the MovSim application have outweighed these limitations during development of the PBTC system.
-
-%\item \textbf{Fuel consumption models}, MovSim includes a fuel consumption package that can retrospectively analyse individual or collective consumption for a simulation. Fuel consumption models can be applied to calculate instantaneous fuel costs and the cost of stopping, related to the priority of a vehicle. 
 
 \section{PBTC System Design}
 
@@ -157,6 +144,7 @@ Secondly, consider a situation where a single vehicle is approaching a red light
 \end{figure}
 
 \subsection {Control Algorithm Design}
+\label{sec:PBTCDesign}
 
 The PBTC control algorithm is a primary component of the PBTC system, designed to be executed by a roadside traffic controller to determine which phases should operate, the order of operation, and duration of each phase; in real-time. The primary objective of the PBTC control algorithm is to reduce the total economic cost incurred by vehicle movements  at PBTC controlled intersection, using traffic composition information communicated to a controller by vehicles in the network. 
 
@@ -183,7 +171,7 @@ If this condition is true at any time, the algorithm enters a phase change seque
 
 The lookahead method used in the PBTC control algorithm is an optimisation method performing a local search for a time of changing phases that incurs the least cost to the system. For example, consider an intersection where two vehicles have been waiting at a red signal for 60 seconds, and the cost of delay has exceeded the cost of stopping the opposing traffic flow receiving a green signal. If two vehicles are approaching the intersection on the freely flowing approach but are close enough to stop if the phase is changed immediately, the cost of the change includes the operational cost of stopping the two vehicles and the cost of delaying the vehicles for the minimum duration of the next phase. 
 
-Due to their distance from the intersection and current velocity, after one additional second the two moving vehicles may pass through the intersection and these costs are avoided, with the trade-off cost being one more second of delay for the two waiting vehicles which is likely to be significantly less. The lookahead procedure of the PBTC control algorithm will evaluate the total cost of extending the current phase by a fixed number of seconds to allow the moving vehicles to pass, and extend the current phase by the calculated minimum time if it is found to be less than the cost of an immediate change.
+Due to their distance from the intersection and current velocity, after one additional second the two moving vehicles may pass through the intersection and these costs are avoided, with the trade-off cost being one more second of delay for the two waiting vehicles. Unless the two waiting vehicles have high urgency and a high number of passengers, the cost of an additional second of delay is likely to be marginal. The lookahead procedure of the PBTC control algorithm will evaluate the total cost of extending the current phase by a fixed number of seconds to allow the moving vehicles to pass, and extend the current phase by the calculated minimum time if it is found to be less than the cost of an immediate change.
 
 \begin{algorithm}[H]
  \SetAlgoLined
@@ -192,20 +180,20 @@ Due to their distance from the intersection and current velocity, after one addi
  }
  \KwResult{ minimal cost time until phase should be change executed }
  \Begin{
-  set totalStoppingCost = 0 \; \\
-  set totalDelayCost = 0 \; \\
+  set $totalStoppingCost$ = 0 \; \\
+  set $totalDelayCost$ = 0 \; \\
   \For{approach in approaches}{
   	\If{approach signal is red} {
-		add cost of delay for all vehicles queued on approach to delayCost \;
+		add cost of delay for all vehicles queued on approach to $totalDelayCost$ \;
 	} 
 	\Else{
-		add cost of stopping and cost of minimum delay for all vehicles on approach to stoppingCost \;
+		add cost of stopping and cost of minimum delay for all vehicles on approach to $totalStoppingCost$ \;
 	}
   }
-  \If {stoppingCost < delayCost} {
+  \If {$stoppingCost < delayCost$} {
   	set lookaheadTable = [] \;
 	\For{$i := 0$ to K} {
-		lookaheadTable[i] = cost of delay for all stopped approaches over i + cost of stopping for all vehicles that cannot clear the intersection after i seconds \;
+		lookaheadTable[i] = cost of delay for all stopped approaches over $i$ + cost of stopping for all vehicles that cannot clear the intersection after $i$ seconds \;
 	}
 
   set extendedGreenTime = index of minimum value in lookaheadTable \;	
@@ -219,6 +207,24 @@ return -1 \;	 \tcc*[r]{no change scheduled}
 % discuss lookahead search tree from other paper here
 
 \section{Evaluation Methodology}
+
+Performance evaluation and analysis is required to determine the effectiveness and appropriateness of the PBTC system. Performance evaluation of traffic control methodology is made difficult by the proprietary and commercial nature of traffic control algorithms and the software systems that implement them. All New Zealand intersections are controlled by the SCATS system, which is commercially developed in Australia and in use in many countries worldwide. No test bed or performance evaluation software is available for SCATS, and as a result a direct comparison with the SCATS implementation is not possible.
+
+An alternative to a direct comparison with the SCATS system considered during the development of this project was to develop a simplified and approximate system that was based off the methodology of SCATS. While this method had the advantage of being able to produce a flexible estimation system that can be easily benchmarked against the PBTC system, there are disadvantages related to implementing an approximation to be representative of the real system. 
+
+Firstly, there is a very limited amount of publicly accessible information related to the design and implementation of the SCATS control algorithms. One of the very few papers available described some algorithms of the very first version of the SCATS system \citeasnoun{lowrie1982scats}, however it is not easy to know how much the system has improved since this paper was published. Secondly, it is not easy to determine how good of an approximation any simplified implementation of SCATS would be without being able to benchmark against the real system leading to potentially inaccurate comparisons. 
+
+As a result of these two limitations of developing a custom, simplified SCATS implementation, the evaluation component of this project was designed based on using reports generated by SCATS containing phase times and traffic conditions of the SCATS system operating on intersections in Wellington over a 12 hour period. The reports used during evaluation were generously provided by the Wellington City Council (WCC), who operate SCATS for all of the intersections in the central Wellington City area. 
+
+SCATS allows WCC engineers to produce reports showing data and intersection state information for every cycle of operation, including exact phase times and the number of vehicle detections per phase. The evaluation component of this project was designed to use the information contained within these reports to reconstruct a realistic representation of SCATS operation in Wellington. This method was preferred over the custom implementation of SCATS because of the relative ease of generating vehicle arrivals and scheduling phase times based off the SCATS reports in simulation. As a result, this method of evaluation the closest to an accurate representation of the real SCATS behaviour, and is easily evaluated over an extended period of operation. 
+
+The 12 hour period of operation was determined with consideration to the typical profile of traffic in the central Wellington City area during a day. A typical day for an inner city intersection is characterised by two "peaks" of traffic congestion in the morning and evening for around 1-2 hours each. Traffic composition around these peaks typically consists of motorists on a morning or evening commute to and from inner city offices for work. By evaluating traffic performance over a 12 hour period from 7AM to 7PM, these peaks can be included in the evaluation, creating a range of traffic conditions for performance analysis. 
+
+%The primary goal of the PBTC system is to reduce the economic costs of delay at a controlled intersection and as a result, evaluation metrics discussed here are designed to measure the impacted costs of running the system over an extended period of time for an intersection.
+
+
+
+
 
 
 

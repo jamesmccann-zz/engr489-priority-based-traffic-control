@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 20001102//EN' 'http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd'>
+<svg height="676" width="972" xmlns="http://www.w3.org/2000/svg">
+<rect height="21" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="895" x="14" y="14"/>
+<rect height="20" style="fill: none; stroke:#000000; stroke-width:1" width="894" x="14" y="14"/>
+<text style="font-family:Dialog; font-size:10;" x="18" y="27">
+org.movsim.simulator.trafficlights</text>
+<rect height="444" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="944" x="14" y="34"/>
+<rect height="443" style="fill: none; stroke:#000000; stroke-width:1" width="943" x="14" y="34"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="110"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="110"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="110"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="112"/>
+<text style="font-family:Dialog; font-size:10;" x="73" y="125">
+TrafficLightControlGroup</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="63" y="133"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="63" x2="206" y1="133" y2="133"/>
+<rect height="72" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="110"/>
+<rect height="64" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="246"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="246"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="238" y="246"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="248"/>
+<text style="font-family:Dialog; font-size:10;" x="295" y="261">
+Phase</text>
+<rect height="34" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="239" y="269"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="239" x2="382" y1="269" y2="269"/>
+<text style="font-family:Dialog; font-size:10;" x="242" y="283">
+intergreenTime : int</text>
+<text style="font-family:Dialog; font-size:10;" x="242" y="296">
+allRedTime : int</text>
+<rect height="64" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="238" y="246"/>
+<rect height="64" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="366"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="366"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="238" y="366"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="238" y="368"/>
+<text style="font-family:Dialog; font-size:10;" x="269" y="381">
+TrafficLightState</text>
+<rect height="21" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="239" y="389"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="239" x2="382" y1="389" y2="389"/>
+<text style="font-family:Dialog; font-size:10;" x="242" y="403">
+status : TrafficLightStatus</text>
+<rect height="64" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="238" y="366"/>
+<polyline points="310,310 310,366" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Dialog; font-size:10;" x="322" y="330">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="316" y="356">
+1..*</text>
+<polyline points="206,182 238,246" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Dialog; font-size:10;" x="222" y="193">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="235" y="230">
+1..*</text>
+<rect height="64" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="246"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="246"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="246"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="248"/>
+<text style="font-family:Dialog; font-size:10;" x="106" y="261">
+TrafficLight</text>
+<rect height="21" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="63" y="269"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="63" x2="206" y1="269" y2="269"/>
+<text style="font-family:Dialog; font-size:10;" x="66" y="283">
+status : TrafficLightStatus</text>
+<rect height="64" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="246"/>
+<polyline points="134,182 134,246" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Dialog; font-size:10;" x="146" y="202">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="140" y="236">
+0..*</text>
+<rect height="100" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="229" x="566" y="102"/>
+<rect height="15" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="229" x="566" y="102"/>
+<rect height="15" style="fill: none; stroke:#000000; stroke-width:1" width="229" x="566" y="102"/>
+<text style="font-family:Dialog; font-size:10;" x="642" y="116">
+&lt;&lt;interface&gt;&gt;</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="229" x="566" y="117"/>
+<text style="font-family:Dialog; font-size:10;" x="642" y="130">
+ControlStrategy</text>
+<rect height="63" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="228" x="567" y="138"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="567" x2="795" y1="138" y2="138"/>
+<text style="font-family:Dialog; font-size:10;" x="570" y="152">
+update() : void</text>
+<text style="font-family:Dialog; font-size:10;" x="570" y="165">
+getNextPhaseIndex() : int</text>
+<text style="font-family:Dialog; font-size:10;" x="570" y="178">
+checkNextPhaseRequest() : bool</text>
+<text style="font-family:Dialog; font-size:10;" x="570" y="191">
+acknowledgeNextPhaseSet(index : void) : void</text>
+<rect height="100" style="fill: none; stroke:#000000; stroke-width:1" width="229" x="566" y="102"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="164" x="414" y="294"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="164" x="414" y="294"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="164" x="414" y="294"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="164" x="414" y="296"/>
+<text style="font-family:Dialog; font-size:10;" x="418" y="309">
+VehicleActuatedControlStrategy</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="163" x="415" y="317"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="415" x2="578" y1="317" y2="317"/>
+<rect height="72" style="fill: none; stroke:#000000; stroke-width:1" width="164" x="414" y="294"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="172" x="598" y="294"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="172" x="598" y="294"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="172" x="598" y="294"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="172" x="598" y="296"/>
+<text style="font-family:Dialog; font-size:10;" x="602" y="309">
+PriorityLookaheadControlStrategy</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="171" x="599" y="317"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="599" x2="770" y1="317" y2="317"/>
+<rect height="72" style="fill: none; stroke:#000000; stroke-width:1" width="172" x="598" y="294"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="790" y="294"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="790" y="294"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="790" y="294"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="790" y="296"/>
+<text style="font-family:Dialog; font-size:10;" x="797" y="309">
+SCATSDataControlStrategy</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="791" y="317"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="791" x2="934" y1="317" y2="317"/>
+<rect height="72" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="790" y="294"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="486" y1="294" y2="289"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="486" y1="284" y2="279"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="486" y1="274" y2="269"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="486" y1="264" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="491" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="496" x2="501" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="506" x2="511" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="516" x2="521" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="526" x2="531" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="536" x2="541" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="546" x2="551" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="556" x2="561" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="566" x2="571" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="576" x2="581" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="586" x2="591" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="596" x2="601" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="606" x2="611" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="616" x2="621" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="626" x2="631" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="636" x2="641" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="646" x2="651" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="656" x2="661" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="666" x2="671" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="676" x2="678" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="262" y2="257"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="252" y2="247"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="242" y2="237"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="232" y2="227"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="222" y2="217"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="212" y2="207"/>
+<polygon points="678,202 685,214 671,214" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<polygon points="678,202 685,214 671,214" style="fill:none; stroke:#000000; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="294" y2="289"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="284" y2="279"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="274" y2="269"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="264" y2="259"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="254" y2="249"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="244" y2="239"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="234" y2="229"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="224" y2="219"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="214" y2="209"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="204" y2="202"/>
+<polygon points="678,202 685,214 671,214" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<polygon points="678,202 685,214 671,214" style="fill:none; stroke:#000000; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="870" x2="870" y1="294" y2="289"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="870" x2="870" y1="284" y2="279"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="870" x2="870" y1="274" y2="269"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="870" x2="870" y1="264" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="870" x2="865" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="860" x2="855" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="850" x2="845" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="840" x2="835" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="830" x2="825" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="820" x2="815" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="810" x2="805" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="800" x2="795" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="790" x2="785" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="780" x2="775" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="770" x2="765" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="760" x2="755" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="750" x2="745" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="740" x2="735" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="730" x2="725" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="720" x2="715" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="710" x2="705" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="700" x2="695" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="690" x2="685" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="680" x2="678" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="262" y2="257"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="252" y2="247"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="242" y2="237"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="232" y2="227"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="222" y2="217"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="678" x2="678" y1="212" y2="207"/>
+<polygon points="678,202 685,214 671,214" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<polygon points="678,202 685,214 671,214" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polyline points="206,150 566,150" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polygon points="206,150 216,145 226,150 216,155" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<polygon points="206,150 216,145 226,150 216,155" style="fill:none; stroke:#000000; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="554" x2="566" y1="157" y2="150"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="554" x2="566" y1="143" y2="150"/>
+<text style="font-family:Dialog; font-size:10;" x="218" y="140">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="548" y="140">
+1</text>
+<rect height="21" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="159" x="246" y="502"/>
+<rect height="20" style="fill: none; stroke:#000000; stroke-width:1" width="158" x="246" y="502"/>
+<text style="font-family:Dialog; font-size:10;" x="250" y="515">
+org.movsim.simulator.vehicles</text>
+<rect height="140" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="208" x="246" y="522"/>
+<rect height="139" style="fill: none; stroke:#000000; stroke-width:1" width="207" x="246" y="522"/>
+<rect height="64" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="366"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="366"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="366"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="144" x="62" y="368"/>
+<text style="font-family:Dialog; font-size:10;" x="93" y="381">
+VehicleApproach</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="143" x="63" y="389"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="63" x2="206" y1="389" y2="389"/>
+<rect height="64" style="fill: none; stroke:#000000; stroke-width:1" width="144" x="62" y="366"/>
+<polyline points="134,310 134,366" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Dialog; font-size:10;" x="146" y="330">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="140" y="356">
+0..*</text>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="120" x="294" y="558"/>
+<rect height="2" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="120" x="294" y="558"/>
+<rect height="2" style="fill: none; stroke:#000000; stroke-width:1" width="120" x="294" y="558"/>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="120" x="294" y="560"/>
+<text style="font-family:Dialog; font-size:10;" x="336" y="573">
+Vehicle</text>
+<rect height="20" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="119" x="295" y="581"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="295" x2="414" y1="581" y2="581"/>
+<rect height="72" style="fill: none; stroke:#000000; stroke-width:1" width="120" x="294" y="558"/>
+<polyline points="294,598 134,598 134,430" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Dialog; font-size:10;" x="276" y="618">
+1</text>
+<text style="font-family:Dialog; font-size:10;" x="116" y="450">
+1</text>
+</svg>

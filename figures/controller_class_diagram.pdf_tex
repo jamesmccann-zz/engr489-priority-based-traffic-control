@@ -1,0 +1,87 @@
+%% Creator: Inkscape inkscape 0.48.2, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'controller_class_diagram.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{756bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.68680556)%
+    \put(0,0){\includegraphics[width=\unitlength]{controller_class_diagram.pdf}}%
+    \put(0.0047619,0.67251984){\makebox(0,0)[lb]{\smash{org.movsim.simulator.trafficlights}}}%
+    \put(0.04025448,0.56881614){\makebox(0,0)[lb]{\smash{TrafficLightControlGroup}}}%
+    \put(0.2978836,0.42490079){\makebox(0,0)[lb]{\smash{Phase}}}%
+    \put(0.24179894,0.40162037){\makebox(0,0)[lb]{\smash{intergreenTime : int}}}%
+    \put(0.24179894,0.38786376){\makebox(0,0)[lb]{\smash{allRedTime : int}}}%
+    \put(0.27037037,0.29791667){\makebox(0,0)[lb]{\smash{TrafficLightState}}}%
+    \put(0.24179894,0.27463624){\makebox(0,0)[lb]{\smash{status : TrafficLightStatus}}}%
+    \put(0.32645503,0.35188492){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.32010582,0.32437169){\makebox(0,0)[lb]{\smash{1..*}}}%
+    \put(0.22063492,0.49685847){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.23439153,0.45770503){\makebox(0,0)[lb]{\smash{1..*}}}%
+    \put(0.0978836,0.42490079){\makebox(0,0)[lb]{\smash{TrafficLight}}}%
+    \put(0.05555556,0.40162037){\makebox(0,0)[lb]{\smash{status : TrafficLightStatus}}}%
+    \put(0.14021164,0.48733466){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.13386243,0.45135582){\makebox(0,0)[lb]{\smash{0..*}}}%
+    \put(0.66790035,0.57904519){\makebox(0,0)[lb]{\smash{$<<$interface$>>$}}}%
+    \put(0.66719506,0.56352513){\makebox(0,0)[lb]{\smash{ControlStrategy}}}%
+    \put(0.58888889,0.54024471){\makebox(0,0)[lb]{\smash{update() : void}}}%
+    \put(0.58888889,0.5264881){\makebox(0,0)[lb]{\smash{getNextPhaseIndex() : int}}}%
+    \put(0.58888889,0.51273148){\makebox(0,0)[lb]{\smash{checkNextPhaseRequest() : bool}}}%
+    \put(0.58888889,0.49897487){\makebox(0,0)[lb]{\smash{acknowledgeNextPhaseSet(index : void) : void}}}%
+    \put(0.41159423,0.37410713){\makebox(0,0)[lb]{\smash{VehicleActuatedControlStrategy}}}%
+    \put(0.62275132,0.37410714){\makebox(0,0)[lb]{\smash{PriorityLookaheadControlStrategy}}}%
+    \put(0.82464038,0.37410714){\makebox(0,0)[lb]{\smash{SCATSDataControlStrategy}}}%
+    \put(0.21640212,0.55294312){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.56560847,0.55294312){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.25026455,0.15611772){\makebox(0,0)[lb]{\smash{org.movsim.simulator.vehicles}}}%
+    \put(0.08412698,0.29791667){\makebox(0,0)[lb]{\smash{VehicleApproach}}}%
+    \put(0.14021164,0.35188492){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.13386243,0.32437169){\makebox(0,0)[lb]{\smash{0..*}}}%
+    \put(0.34126984,0.09474206){\makebox(0,0)[lb]{\smash{Vehicle}}}%
+    \put(0.27777778,0.04712302){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.10846561,0.22490079){\makebox(0,0)[lb]{\smash{1}}}%
+  \end{picture}%
+\endgroup%
