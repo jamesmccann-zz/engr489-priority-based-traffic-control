@@ -22,7 +22,7 @@ Movsim (Multi-model Open-source Vehicular-traffic Simulator) is an open-source, 
 \label{intersectiondiagram}
 \end{figure}
 
-All software artefacts produced during this project were implemented within a fork of the Movsim project, which we have named PBTSim (Priority Based Traffic Simulator). PBTSim is a software application that allows for simulation and evaluation of traffic control methods based on the vehicle priority model described in Chapter 3. While priority based traffic model features specific to this project are maintained in PBTSim, general purpose features and improvements to the Movsim project have been offered back to the original Movsim repository for consideration of the maintaining authors.
+All software artefacts produced during this project were implemented within a fork of the Movsim project, which we have named PBTSim (Priority Based Traffic Simulator). PBTSim is a software application that allows for simulation and evaluation of traffic control methods based on the vehicle priority model described in Chapter 4. While priority based traffic model features specific to this project are maintained in PBTSim, general purpose features and improvements to the Movsim project have been offered back to the original Movsim repository for consideration of the maintaining authors.
 
 Limitations of using the MovSim project as a base simulation tool for the PBTSim include lack of support for bi-directional traffic flow and turning behaviour at intersections, both requirements for accurate modeling of a real world road network. Both of these features are areas of future development for the MovSim project. The sophisticated traffic modeling capabilities of the MovSim application, have outweighed these limitations during development of the PBTC system.
 
@@ -61,22 +61,59 @@ To solve this problem, a new phase model was developed for the PBTSim simulator 
 %2
 While appropriate for simple examples and fixed-time phases, the basic Movsim implementation of phase configuration is not appropriate for advanced controller strategies, including the PBTC strategy, where skipping phases with no traffic demand is desirable. It is difficult to express skipping of phases in the Movsim phase model, as there is no clear distinction between an intergreen phase and an "active" phase to indicate which phases are allowed to be skipped. For example, skipping the "next" phase will cause the traffic controller to skip the intergreen phase and change to another active phase, rather than the desired behaviour of skipping the next active phase.
 
-The new phase model of PBTSim addresses this problem as integreen and all-red periods of operation are defined as conditions required to transition between active phases, rather than phases. As a result, expressing skipped phases or operating phases out of order is greatly simplified. 
+The new phase model of PBTSim addresses this problem as integreen and all-red periods of operation are enforced during transitions between active phases, rather than phases themselves. As a result, expressing skipped phases or operating phases out of order is greatly simplified. 
 
 The new phase model developed during this project has been provided to the Movsim authors as a potential general purpose improvement.
 
+% good up to here jm 04.10.13
 
+\section{Vehicle Priority Simulation}
 
-% good up to here
+Priority based traffic modeling is a concept specific to this project and is not implemented in any form within the Movsim simulator. To allow for implementation of the PBTC control system, PBTSim implements the priority model described in Chapter 4 for all vehicles, and simulates communication between vehicles and a traffic light controller as required by the PBTC control system.
+
+\subsection{Traffic Composition}
+
+The priority model described in Chapter 4 assumes that occupants of all vehicles on a road network have an urgency of travel, defined as a discrete integer between one and five. As this is an arbitrary, relative scale of motorist urgency, statistics of the distribution of driver urgencies for a given time or particular intersection are unknown and not easily measured.
+
+As a result, the distribution of urgency values of traffic within the PBTSim system is estimated using an enumerated probability distribution which assigns an arbitrary probability of occurrence to each urgency value for each class of vehicle within the simulation. Table ~\ref{urgencydistribution} shows the probability distribution of urgency values for each class of vehicle in the PBTSim system. The distributions of urgency values are relatively weighted to indicate reasonable assumptions on vehicle urgency, which are difficult to empirically measure and it is beyond the scope of this project to do so, e.g. by surveying characteristics of vehicles and road users at an intersection. 
+
+\begin{table}[]
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{5}{c}{Passenger Urgency} \\
+ \cmidrule(lr){2-6}
+Vehicle Class & 1 & 2 & 3 & 4 & 5 \\
+\midrule
+Car (Light Vehicle) & 0.2 & 0.25 & 0.395 & 0.15 & 0.005  \\
+Bus (Heavy Vehicle) & 0.3 & 0.5 & 0.2 & 0.0 & 0.0 \\
+Truck (Heavy Vehicle) & 0.1 & 0.5 & 0.3 & 0.1 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{Probability values for an enumerated integer distribution of individual vehicle urgencies. Each urgency value in the range 1--5 is associated with a probability of occurrence for a single vehicle. }
+	\label{urgencydistribution}
+\end{table}
+
+Probability values are assigned to give a one-sided distribution that assumes there are lower proportions of truly urgent road users than not. Buses and trucks have relatively lower average urgency values compared to passenger cars. This measure is used to reflect that public transport is by its nature unreliable for each single passenger, hence most passengers using public transport allow more time than required to reach their destination and that the majority of freight trucks operate on long inter-city journeys, hence the proportion of time potentially spent waiting in traffic lights in a city is small compared to the relatively long journey time.
+
+\subsection{Approach Communication}
+
+A requirement of the design of the PBTC control system is that all vehicles approaching an intersection must broadcast their position, physical properties, and required passenger characteristics to a traffic controller. As Movsim was not designed with this requirement in mind, a new system of simulated communication between vehicles and traffic controllers had to be designed for the PBTSim simulator.
+
+Each traffic controller within the simulation maintains a list of broadcasts they have received as a map and each new broadcast replaces any existing broadcast from each unique vehicle. An individual broadcast contains properties required by a controller in order to calculate operational stopping cost and delay cost estimated for each individual vehicle, specifically vehicle weight, speed, acceleration, urgency, number of passengers, and distance to the intersection stop-line. Once a vehicle has cleared the stop-line of an intersection, their broadcast is removed from the traffic controller map.
+
+In order to ensure that the PBTSim environment is representative of a realistic road network and network infrastructure, efforts are made to ensure that the simulated communication between approaching vehicles and a traffic controller includes consideration of the challenges of a real-world communications network. In a simulated environment, vehicle properties can be broadcast instantly, without network costs or delay; however, in reality network topology and bandwidth limitations are factors that reduce the availability of broadcasts. To introduce consideration of networking latency into PBTSim, a two-second delay is imposed on each broadcast from an individual vehicle. This is not designed to be an accurate representation of network imperfections, but does reflect consideration of these factors.
+
+An alternative design considered involved allowing delay and stopping costs to be calculated and broadcast by the vehicle itself. This method has the advantage of reducing the amount of calculations that are required to be made by a traffic controller, however this distributed computation is more difficult to implement successfully and there are no guarantees that all vehicles will implement the same cost calculations. This method is also difficult to update if changes to the cost calculations were desired after installation.
 
 \section{Control Strategies}
 
-Movsim includes an basic implementation of traffic control capable of operating an ordered list of traffic light phases defined in a simulation configuration file, however the implementation is limited to fixed-time phase control only. In order to allow for evaluation of multiple phase control strategies to be tested within the Movsim simulator, a more sophisticated design was implemented during development of the PBTSim system.
+Movsim includes a basic implementation of traffic control capable of operating an ordered list of traffic light phases defined in the simulation configuration file, however the implementation is limited to fixed-time phase control only, where each phase runs for a predetermined number of seconds before transitioning to the next phase. In order to allow for evaluation of multiple phase control strategies to be tested during simulation, a more sophisticated architecture design was implemented during development of the PBTSim system. 
 
-Additions made to the traffic control architecture of Movsim during this project are designed to be modular and avoid limiting the scope of future work or potential for implementation changes. The \emph{ControlStrategy} interface implementation is an example of how the Movsim simulator is extended to allow for development of the PBTC control algorithm. The ControlStrategy interface implements a strategy pattern, an object-oriented design pattern that allows for dynamic selection of a strategy implementation at runtime. This pattern is well-suited to the design of the control strategy algorithm as new strategies (such as the PBTC system) can be added to the system by implementing the strategy interface and defining their own behaviour. Figure ~\ref{controllerclassdiagram} shows a UML class diagram of the type relationships in the traffic lights package of the Movsim application.
-% cite strategy pattern here
+Changes made to the traffic control architecture of PBTSim during this project are designed to be modular and avoid limiting the scope of future work or potential for implementation changes. Figure ~\ref{controllerclassdiagram} shows a UML class diagram of the type relationships in the traffic control architecture of PBTSim. ControlStrategy is a Java interface class added to PBTSim which implements the Strategy Pattern, an object-oriented design pattern that allows for dynamic selection of a strategy implementation at runtime. This pattern is well-suited to the design of the control strategy algorithm as new strategies (such as the PBTC system) can be added to the system by implementing the strategy interface and defining their own behaviour. % cite strategy pattern here
 
-The ControlStrategy interface is called by a \emph{TrafficLightControlGroup}, regardless of the concrete implementation of the strategy, to check if a phase should be changed and acknowledge a phase change once it has been made. This relationship creates a separation of concerns, where a TrafficLightControlGroup is only concerned with changing the state of TrafficLight objects within the simulator, and each of the concrete implementation of the ControlStrategy interface are responsible for defining conditions that will trigger a change. 
+The ControlStrategy interface is called by a TrafficLightControlGroup class, which controls the state of lights within the simulator. Methods of the ControlStrategy interface allow a TrafficLightControlGroup to check if conditions for scheduling a phase change have been met and acknowledge the change once it has been made. Each concrete implementation of the ControlStrategy class can implement their own conditions and strategies that will trigger a change. This relationship creates a separation of concerns between controlling traffic light state and defining traffic light behaviour, allowing for new behaviours to be easily added independently of all other existing strategies. 
 
 \begin{figure}[]
 \centering
@@ -85,53 +122,58 @@ The ControlStrategy interface is called by a \emph{TrafficLightControlGroup}, re
 \label{controllerclassdiagram}
 \end{figure}
 
-\section{Simulation of Approach Communication}
+% good up to here
 
-In a simulated environment, it is typically possible to access the properties of any object at any time regardless of physical laws or constraints. In order to ensure that the simulation environment used to evaluate the PBTC control system was representative of a realistic road network environment, efforts are made to ensure that the simulated communication between approaching vehicles and a traffic controller includes consideration of the challenges of a real-world communications network. 
+\section{Implementation of the PBTC Control Strategy}
 
-Some of the primary challenges facing ad-hoc wireless communication between a traffic controller and an approaching vehicle include broadcasting and intercepting the correct messages, and identification of traffic controllers. Design of the network architecture required for such a system is an effort beyond the scope of this project and consideration of communication requirements was limited to ensuring reasonable lag between each vehicle communication, determining what information is required for a traffic controller to estimate cost parameters, and handling repeated broadcasts from individual vehicles while approaching or waiting at an intersection.
+The PBTC control algorithm described in Section ~\ref{sec:PBTCDesign} is implemented as a concrete ControlStrategy implementation within PBTSim. The strategy implementation of the PBTC control algorithm consists of two primary phases of operation; approach cost calculation and phase scheduling. 
 
-Each traffic controller within the simulation maintains a list of broadcasts they have received as a map and each new broadcast replaces any existing broadcast from each unique vehicle. An individual broadcast contains properties required by a controller in order to calculate operational stopping cost and delay cost estimated for each individual vehicle, specifically vehicle weight, speed, acceleration, urgency, number of passengers, and distance to the intersection stop-line. 
+The PBTC control algorithm implementation dynamically calculates the sum of the individual estimated delay and operational stopping costs for all of the vehicles on each approaching link of the intersection at each simulator update. 
+The current phase of a PBTC traffic controller operates continuously until the calculated cost of delay on all stopped approaches exceeds than the cost of stopping green approaches, at which point the next phase is allocated and the controller enters the phase change sequence. Once the controller has entered the phase change sequence, it is  committed to changing phases and the lookahead optimisation method is employed to determine whether the phase should change now, or some point in the future, based on the real-time position and state information of vehicles on approaching links. 
 
-In a simulated environment, vehicle properties can be broadcast instantly, without network costs or delay; however, in reality network topology and bandwidth limitations are factors that reduce the availability of broadcasts. To introduce allowance for imperfect network communication into the simulator, a two-second delay is imposed on each broadcast from an individual vehicle. This is not designed to be an accurate representation of network imperfections, but does reflect consideration of these factors.
- 
-% describe alternatives - requiring vehicles to calculate their own costs -> difficult to implement successfully, prone to hacking, difficult to update etc. etc.
-An alternative to communicating physical properties of each individual vehicle to the controller is to calculate delay and stopping costs is to have these costs calculated and broadcast by the vehicle itself. This method has the advantage of reducing the amount of calculations that are required to be made by a traffic controller, however this distributed computation is more difficult to implement successfully and there are no guarantees that all vehicles will implement the same cost calculations. This method is also difficult to update if changes to the cost calculations were desired after installation.
-
-\section{Implementation of the PBTC System}
-
-% is this shit necessary?
-The PBTC control system was implemented as a concrete ControlStrategy implementation within the Movsim project as per the algorithm and component design described in Section ~\ref{sec:PBTCDesign}.
-
-The strategy implementation of the PBTC Control Algorithm consists of two primary phases of operation. Firstly, the implementation maintains a map of all broadcast communication packet from all vehicles approaching the intersection and dynamically calculates the sum of the individual estimated delay and operational stopping costs for all of the vehicles on each approaching link of the intersection.
-
-The current phase of a PBTC traffic controller operates continuously until the calculated cost of delay on all stopped approaches exceeds than the cost of stopping green approaches, at which point the next phase is allocated and the controller enters the phase change sequence. Once the controller has entered the phase change sequence, it is  committed to changing phases and the lookahead optimisation method is employed to determine whether the phase should change now, or some point in the future, based on the current state of vehicle statistics in the controller memory. 
-
-% is this necessary?
+% this section is good
 \subsection{Lookahead Optimisation}
 
-Once a PBTC controller has entered the phase change sequence, lookahead optimisation for a locally minimal cost of changing phases is found by constructing a lookahead table, forming a search space for the solution. The lookahead table includes an estimate of the  per second instantaneous change costs for all vehicles known to the PBTC controller at the time the phase change sequence was entered. 
+PBTSim implements the PBTC control algorithm's lookahead features using a map to construct a table of cost values a the end of each phase, once the phase change sequence has been initiated. The lookahead table includes an estimate of the instantaneous change costs for all vehicles known to the PBTC controller at the time the phase change sequence was entered. For each second up to the defined size of the lookahead table, $K$, the PBTC control strategy estimates the cost of changing phases by finding the sum of the cost of stopping, and the cost of delay at least equal to the minimum duration of the next phase in the controller sequence for every individual vehicle approaching a green signal, and the sum of the cost of stopping and cost of delay for the duration of the current lookahead for any vehicles approaching or queued at a red signal. 
 
-For each second up to the defined size of the lookahead table, $K$, the PBTC control strategy implementation estimates the cost of changing phases by finding the sum of the cost of stopping, and the cost of delay at least equal to the minimum duration of the next phase in the controller sequence for every individual vehicle approaching a green signal, and the sum of the cost of stopping and cost of delay for the duration of the current lookahead for any vehicles approaching or queued at a red signal. 
+To estimate the costs of a phase change each second up to the lookahead time, a PBTC system needs to identify if each vehicle approaching a light currently displaying a green signal will be stopped by the phase change and hence incur the cost of stopping, or will clear the intersection within the number of seconds the change will be scheduled for and have no additional costs incurred. 
 
-The result of constructing a lookahead table is a small search space that can be efficiently queried to find the minimum estimated cost of changing phases. The lookahead time associated with the minimum cost is allocated to the extended green time for the current cycle and will delay the phase change until this time has passed.
+In a free-flowing traffic situation, the distance traveled by a vehicle in a fixed time frame can be estimated using the vehicles speed and acceleration only. For example, if a PBTC controller is considering a phase change for an intersection 5 seconds from the present time, and a vehicle is approaching at 10m/s at a distance of 30 metres, the vehicle will have passed over the intersection stop line within 3 seconds therefore will not be affected by the phase change.  However, in congested traffic where vehicles are queued, whether or not a given vehicle, $v$ in the queue will clear an intersection within $t$ seconds is dependant on the speed and acceleration profiles of vehicles in front of $v$, and as a result is significantly affected by driver behaviours and instantaneous traffic conditions. 
 
-\subsection{Vehicle Clearance Estimation}
+Due to the difficulty of developing and implementing such a model of estimated clearances for simulation and evaluation of the PBTC system, empirical measurement of clearance times and distances within the Movsim simulator using typical driver behaviours was conducted to estimate the worst-case conditions of congested traffic and identify the maximum distance a vehicle could be from a traffic light to clear within a fixed range of seconds. Measurement results were used to create a map of key-value pairs consisting of the time in seconds, and the maximum distance from a traffic light a vehicle could expect to clear the intersection within the time frame. Table ~\ref{vehiclecleardistances} shows the measured results used by PBTSim to determine whether each vehicle will clear a traffic light within a given timeframe. If a vehicle has a speed of less than 2.5m/s when approaching a traffic light, it is assumed to be in queue and the estimated clear time is determined from the table.
 
-To estimate the delay and operational stopping costs during construction of a lookahead table, a priority based traffic controller inspects the trajectory of each known vehicle based on their most recently broadcast update. In order to estimate the cost of a potential future phase change for each vehicle, the PBTC system must first determine how each individual vehicle will be affected by the phase change. For example, if a PBTC controller is considering a phase change for an intersection 5 seconds from the present time, and a vehicle is approaching at 10m/s at a distance of 30 metres, the vehicle will have passed over the intersection stop line within 3 seconds therefore will not be affected by the phase change. 
-
-An accurate model to determine whether an individual vehicle will pass through, or "clear", an intersection within a given time frame is typically not based solely on the properties of the individual vehicle only. For example, in a free-flowing traffic situation, the distance traveled by a vehicle in a fixed time frame can be estimated using the vehicles speed and acceleration only. However, in congested traffic involving vehicle queues, whether or not a given vehicle, $v$ in the queue will clear an intersection within $t$ seconds is dependant on the speed and acceleration profiles of vehicles in front of $v$, and as a result is significantly based on driver behaviours and instantaneous traffic conditions.
-
-Due to the difficulty of developing and implementing such a model of estimated clearances for simulation and evaluation of the PBTC system, empirical measurement of clearance times and distances within the Movsim simulator using typical driver behaviours was conducted. An experiment was conducted using the Movsim simulator to estimate the worst-case conditions of congested traffic and identify the maximum distance a vehicle could be from a traffic light to clear within a fixed range of seconds. Measurement results were used to create a map of key-value pairs consisting of the time in seconds, and the maximum distance from a traffic light a vehicle could expect to clear the intersection within the time frame.  
+\begin{table}[]
+\begin{center}
+\begin{tabular}{rr}
+\toprule
+Phase Duration ($s$) & Queue Clear Distance ($m$) \\
+\midrule
+10 & 22.12 \\
+15 & 40.03 \\
+20 & 58.10 \\
+25 & 80.15 \\
+30 & 94.40 \\
+35 & 111.47 \\
+40 & 133.50 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{ Estimated maximum intersection clearance distances used by PBTSim to determine if a queued vehicle will pass an intersection before the end of a phase. The time is given as the duration of green time remaining in the phase, and the distance is the maximum expected distance a vehicle can be queued from the intersection stop-line to clear within the allowed time. }
+\label{vehiclecleardistances}
+\end{table}
 
 \section{Implementation of a SCATS Representation}
 
-% can use the SCATS data to determine arrivals and signal settings each cycle
-The SCATS implementation developed during this project was designed to recreate a representation of real-world SCATS behaviour using an available log file of vehicle arrivals and allocated phase times at different intersections in Wellington City. An example of the SCATS log file format is shown in Appendix A. Log files for intersections in Wellington City were provided for a 12 hour period of a typical day by the Wellington City Council.
+% can use the SCATS data to determine arrivals and signal settings each cyclex
+Development of a SCATS representation is a requirement of the evaluation process of this project. As SCATS is deployed on most of the controlled intersections within New Zealand and uses an adaptive traffic control algorithm to respond to near real-time traffic demand, it is appropriate for comparison with the PBTC control algorithm.
 
-Each log file consists of an ordered sequence of data blocks for a single cycle of operation for a given traffic light controller, sent to SCATS by the controller at the end of each cycle. The cycle block contains state information required by SCATS to calculate the phase timings for the next cycle, including number of vehicle detector actuations per approach, i.e. the number of vehicles that entered the intersection on each approach; and the order and time of each of the phase splits run by the controller during that cycle. 
+As SCATS is a commercial system, no software or algorithms are available for public research. As a result, the SCATS implementation developed for PBTSim is designed to recreate a realistic representation of real-world SCATS behaviour using an available log file of vehicle arrivals and allocated phase times at different intersections in Wellington City. An example of the SCATS log file format is shown in Appendix A. Log files for intersections in Wellington City were provided for a 12 hour period of a typical day by the Wellington City Council.
 
-% class diagram of scats shit here
+Each SCATS log file consists of an ordered sequence of data blocks for each single cycle of operation of a given traffic light controller, sent to SCATS by the controller at the end of each cycle. The cycle block contains state information required by SCATS to calculate the phase timings for the next cycle, including number of vehicle detector actuations per approach, i.e. the number of vehicles that entered the intersection on each approach; and the order and time of each of the phase splits run by the controller during that cycle. 
+
+The design of a software package to simulate SCATS behaviour involved replicating the arrivals recorded by SCATS over the fixed period of the log, and implementing a control strategy to operate phase times for each cycle of the log.
+
+% good up to here
 
 \subsection{Vehicle Arrivals}
 
