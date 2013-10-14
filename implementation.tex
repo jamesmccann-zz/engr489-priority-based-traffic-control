@@ -26,17 +26,6 @@ All software artefacts produced during this project were implemented within a fo
 
 Limitations of using the MovSim project as a base simulation tool for the PBTSim include lack of support for bi-directional traffic flow and turning behaviour at intersections, both requirements for accurate modeling of a real world road network. Both of these features are areas of future development for the MovSim project. The sophisticated traffic modeling capabilities of the MovSim application, have outweighed these limitations during development of the PBTC system.
 
-\section{Scenario Design}
-\label{sec:ScenarioDesign}
-
-The MovSim simulator is designed to be highly configurable and uses XML files as specifications for the simulations that will be executed. One of the two road network description files required by MovSim is an OpenDrive network specification file which defines the geometry, order, and connections between roads which are structured in XML. OpenDrive is an "open file format for the logical description of road networks" \cite{opendrive}. The format is extremely descriptive and supports a large number of geometric constructs to generate realistic road networks. As MovSim required the use of OpenDrive, no alternative road network description formats are discussed here.
-
-The intersection configuration designed and implemented for evaluation purposes within this project consists of two one-way approaches, each with two vehicle lanes and was based on availability of data for real-world intersections in Wellington City. As this two-way intersection configuration is a common design, the configuration files were submitted back to the Movsim repository as an example, and accepted by the Movsim authors. 
-
-% include snippet example in appendix?
-
-Although OpenDrive supports a large number of realistic road network configurations, the implementation supported within the MovSim simulator is limited to a subset of these. Currently, MovSim has no support for bi-directional roads in OpenDrive; although this feature has been under active development by the MovSim authors for a number of months. Without bidirectional roading, the intersection configuration in this project has been limited to two-phase "crossroads" intersections with two approaches of one-way traffic, such as above, only. 
-
 \section{Phase Model}
 
 Movsim allows for customisable phases to be configured in the project description file, an XML document describing user-defined settings for traffic composition, simulation variables, and traffic controller plans. Traffic controller phases can be defined in the project description file as an ordered list, with each phase including a list of the state (green, amber, or red) for each traffic light for a given controller. 
