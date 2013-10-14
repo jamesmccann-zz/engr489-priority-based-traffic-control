@@ -114,7 +114,7 @@ The ControlStrategy interface is called by a TrafficLightControlGroup class, whi
 
 % good up to here
 
-\section{Implementation of the PBTC Control Strategy}
+\section{Designs of the PBTC Control Strategy}
 
 The PBTC control algorithm described in Section ~\ref{sec:PBTCDesign} is implemented as a concrete ControlStrategy implementation within PBTSim. The strategy implementation of the PBTC control algorithm consists of two primary phases of operation; approach cost calculation and phase scheduling. 
 
@@ -152,7 +152,8 @@ Phase Duration ($s$) & Queue Clear Distance ($m$) \\
 \label{vehiclecleardistances}
 \end{table}
 
-\section{Implementation of the SCATS Control Strategy}
+\section{Design of SCATS Control Strategy}
+\label{sec:scats_strategy}
 
 % can use the SCATS data to determine arrivals and signal settings each cyclex
 Development of a SCATS representation is a requirement of the evaluation process of this project. As SCATS is deployed on most of the controlled intersections within New Zealand and uses an adaptive traffic control algorithm to respond to near real-time traffic demand, it is appropriate for experimental comparison with the PBTC control algorithm.
@@ -171,4 +172,13 @@ The volume of traffic at an intersection over a given period affects the ability
 SCATS provides the number of vehicle actuations recorded by each stop line inductive loop detector, for each cycle contained within an intersection log file. As SCATS detectors are placed on the stop line of each approach at an intersection, it is assumed that the number of vehicle actuations at each detector is approximately equal to the number of vehicles that passed through the intersection during a given green phase and the number of vehicles that arrived on that approach over the entire cycle. These assumptions provide a reasonable estimate of the arrival time of vehicles to each queue at an intersection, as it is not possible to know the exact time of arrival and waiting time for each vehicle using only SCATS log files. The consequence of these assumptions is that generated arrival times may not be representative of the arrival times that occurred during the real-world scenario that the SCATS log files reflect, although on average it is expected the simulated arrival times will be close approximations of real-world arrivals. 
 
 As no other information related to the time of vehicle arrivals is available, arrival events are implemented using a Poisson arrival process. During a PBTSim simulation, the Poisson process is used to generate an estimated time to the next arrival after each simulated arrival has taken place. The Poisson arrivals implementation is a general purpose improvement over the linear arrivals model that was previously implemented in Movsim has been submitted back to the original Movsim repository for review as a configurable option to benefit further research.
+
+\section{Design of Vehicle Actuated Control Strategy}
+
+To ensure results of comparison to the SCATS implementation described in ~\ref{sec:scats_strategy} are not greatly misrepresentative of real-world usage of SCATS, a third control strategy based on vehicle detector actuations was designed. The design of this strategy is based on the implementation of \emph{Flexilink}, which is the vehicle actuated backup strategy employed by SCATS-implementing traffic controllers whenever a connection to the master SCATS system is unavailable. % cite scats training
+
+The Vehicle Actuated control strategy uses fixed-duration phases, configured with a mandatory minimum and maximum duration for each phase, and an additional gap timer to end phases early in the presence of no demand. The gap timer counts the number of seconds between vehicle actuations during a green phase, recorded by simulated ``detectors'' placed at all intersection stop-lines. Each time a vehicle crosses the stop-line at an intersection displaying a green signal, the gap timer for that phase is reset. If the gap timer duration extends beyond a fixed time limit and there is demand for other phases at an intersection, the current phase is ended and green time is allocated to another phase. This allows for the Vehicle Actuated control strategy to end phases early if no more vehicles are approaching on a given road. If the gap timer will is not triggered during a phase, it will operate until the maximum duration has been reached.
+
+In practice, strategies based on vehicle actuations (such as the SCATS Flexilink system) use additional timers to define other conditions by which a phase can be ended. Flexilink implements a ``waste timer'' that implements as a cumulative gap timer which is not reset after each detection. Once the ``waste timer'' extends beyond a fixed duration, the current phase can be ended. To simplify the design and development of the Vehicle Actuated control strategy in PBTSim, only a gap timer was used as a condition for phase ending.  
+
 
