@@ -19,17 +19,15 @@
 \contentsline {subsection}{\numberline {3.2.3}Control Algorithm Design}{14}
 \contentsline {chapter}{\numberline {4}Simulator Design and Implementation}{17}
 \contentsline {section}{\numberline {4.1}Simulation Platform}{17}
-\contentsline {section}{\numberline {4.2}Scenario Design}{18}
-\contentsline {section}{\numberline {4.3}Phase Model}{19}
-\contentsline {section}{\numberline {4.4}Vehicle Priority Simulation}{20}
-\contentsline {subsection}{\numberline {4.4.1}Traffic Composition}{20}
-\contentsline {subsection}{\numberline {4.4.2}Approach Communication}{21}
-\contentsline {section}{\numberline {4.5}Control Strategies}{21}
-\contentsline {section}{\numberline {4.6}Implementation of the PBTC Control Strategy}{22}
-\contentsline {subsection}{\numberline {4.6.1}Lookahead Optimisation}{22}
-\contentsline {section}{\numberline {4.7}Implementation of a SCATS Control Strategy}{25}
-\contentsline {subsection}{\numberline {4.7.1}Vehicle Arrivals}{25}
-\contentsline {subsection}{\numberline {4.7.2}SCATS Control Stategy}{26}
+\contentsline {section}{\numberline {4.2}Phase Model}{18}
+\contentsline {section}{\numberline {4.3}Vehicle Priority Simulation}{19}
+\contentsline {subsection}{\numberline {4.3.1}Traffic Composition}{20}
+\contentsline {subsection}{\numberline {4.3.2}Approach Communication}{20}
+\contentsline {section}{\numberline {4.4}Control Strategies}{21}
+\contentsline {section}{\numberline {4.5}Implementation of the PBTC Control Strategy}{23}
+\contentsline {subsection}{\numberline {4.5.1}Lookahead Optimisation}{23}
+\contentsline {section}{\numberline {4.6}Implementation of the SCATS Control Strategy}{24}
+\contentsline {subsection}{\numberline {4.6.1}Vehicle Arrivals}{25}
 \contentsline {chapter}{\numberline {5}Evaluation}{27}
 \contentsline {section}{\numberline {5.1}Methodology}{27}
 \contentsline {section}{\numberline {5.2}Experimental Configuration}{28}
