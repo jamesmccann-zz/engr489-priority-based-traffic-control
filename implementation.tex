@@ -1,6 +1,6 @@
 \chapter{Simulator Design and Implementation}
 
-The following chapter describes the design and implementation of PBTSim, a software package to allow for simulation and evaluation of priority based traffic control. To produce a representative comparison with existing SCATS-based systems, creating a realistic simulation environment was a key implementation challenge, and a primary objective of this project. The outcomes discussed in this chapter are:
+This chapter describes the design and implementation of PBTSim, a software package to allow for simulation and evaluation of priority based traffic control. To produce a representative comparison with existing SCATS-based systems, creating a realistic simulation environment was a key implementation challenge, and a primary objective of this project. The outcomes discussed in this chapter are:
 
 \begin{itemize}
 \item using the open-source software package MovSim as a framework for implementation of PBTSim,
@@ -32,7 +32,7 @@ Movsim allows for customisable phases to be configured in the project descriptio
 
 \begin{figure}[]
 \centering
-	\includegraphics[scale=0.60]{movsim-phases.pdf}
+	\includegraphics[scale=0.60]{movsim-phasesv2.pdf}
 	\caption{ A diagram of the available phase states and transitions of a "two-phase" configuration within the Movsim simulator. Movsim requires intergreen and all-red periods to be configured as individual phases and does not allow a simple mechanism for skipping, repeating, or alternating the order of configured phases. }
 \label{movsimphasediagram}
 \end{figure}

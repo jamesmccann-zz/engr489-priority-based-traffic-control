@@ -2,13 +2,12 @@
 \contentsline {section}{\numberline {1.1}Motivations}{1}
 \contentsline {section}{\numberline {1.2}Problem}{2}
 \contentsline {section}{\numberline {1.3}Priority Based Signal Control}{2}
-\contentsline {section}{\numberline {1.4}Contributions}{2}
+\contentsline {section}{\numberline {1.4}Objectives}{2}
 \contentsline {chapter}{\numberline {2}Background and Related Work}{5}
-\contentsline {section}{\numberline {2.1}Signal Control Optimisation Techniques}{5}
+\contentsline {section}{\numberline {2.1}Adaptive Signal Control Optimisation Techniques}{5}
 \contentsline {subsection}{\numberline {2.1.1}Sydney Coordinated Adaptive Traffic System}{5}
 \contentsline {subsection}{\numberline {2.1.2}Splits-Cycle-Offsets-Optimization-Technique}{6}
 \contentsline {section}{\numberline {2.2}Lookahead Based Control}{6}
-\contentsline {section}{\numberline {2.3}Inter-Vehicular Communication}{7}
 \contentsline {chapter}{\numberline {3}Design}{9}
 \contentsline {section}{\numberline {3.1}Priority Modeling}{9}
 \contentsline {subsection}{\numberline {3.1.1}Operational Stopping Cost}{10}
@@ -24,7 +23,7 @@
 \contentsline {subsection}{\numberline {4.3.1}Traffic Composition}{22}
 \contentsline {subsection}{\numberline {4.3.2}Approach Communication}{22}
 \contentsline {section}{\numberline {4.4}Control Strategies}{23}
-\contentsline {section}{\numberline {4.5}Designs of the PBTC Control Strategy}{25}
+\contentsline {section}{\numberline {4.5}Designs of the PBTC Control Strategy}{23}
 \contentsline {subsection}{\numberline {4.5.1}Lookahead Optimisation}{25}
 \contentsline {section}{\numberline {4.6}Design of SCATS Control Strategy}{26}
 \contentsline {subsection}{\numberline {4.6.1}Vehicle Arrivals}{27}
@@ -36,13 +35,18 @@
 \contentsline {section}{\numberline {5.4}Delay Time and Cost}{31}
 \contentsline {section}{\numberline {5.5}Incurred Stopping Cost}{37}
 \contentsline {section}{\numberline {5.6}Overall Incurred Costs}{40}
-\contentsline {chapter}{\numberline {6}Summary}{45}
-\contentsline {section}{\numberline {6.1}Applicability}{45}
-\contentsline {subsection}{\numberline {6.1.1}Priority Modeling for Cost Estimation}{45}
-\contentsline {subsection}{\numberline {6.1.2}SCATS Log Data}{46}
-\contentsline {section}{\numberline {6.2}Future Work}{46}
-\contentsline {section}{\numberline {6.3}Outcomes}{47}
+\contentsline {section}{\numberline {5.7}Discussion}{42}
+\contentsline {subsection}{\numberline {5.7.1}Validity}{44}
+\contentsline {subsubsection}{Priority Modeling for Cost Estimation}{44}
+\contentsline {subsubsection}{SCATS Log Data}{44}
+\contentsline {chapter}{\numberline {6}Summary}{47}
+\contentsline {section}{\numberline {6.1}Contributions}{47}
+\contentsline {section}{\numberline {6.2}Future Work}{47}
+\contentsline {section}{\numberline {6.3}Outcomes}{48}
 \contentsline {chapter}{Appendices}{51}
 \contentsline {chapter}{\numberline {A}Terminology}{53}
-\contentsline {chapter}{\numberline {B}SCATS Data File Format}{55}
-\contentsline {chapter}{\numberline {C}SCATS Intersection Configurations}{57}
+\contentsline {chapter}{\numberline {B}Inter-Vehicle Communication}{55}
+\contentsline {chapter}{\numberline {C}SCATS Data File Format}{57}
+\contentsline {chapter}{\numberline {D}Evaluation Intersections}{59}
+\contentsline {section}{\numberline {D.1}SCATS Representations}{59}
+\contentsline {section}{\numberline {D.2}PBTSim Representations}{59}
