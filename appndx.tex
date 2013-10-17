@@ -5,12 +5,12 @@
 
 Traffic control engineering involves specific terminology to refer to different signal controls, timing plans, and controller types. This section offers a brief introduction of traffic signal control and terminology.
 
-Modern intersections with traffic signals are controlled by a roadside \emph{signal controller}. Controllers switch power to signal lanterns and determine the sequence of display for each set of lights, operating under the safety requirement that no two conflicting flows receive green signals simultaneously. A typical controller operates lights in sequences called \emph{phases}, which are dynamic length allocations of green light time to a set of non-conflicting flows at an intersection. Typically, modern controllers include the following fixed or dynamic time allocations within a phase:
+Modern intersections with traffic signals are controlled by a roadside \emph{signal controller}. An intersection consists of a number of \emph{approaches} which are distinct roads leading to a point of intersection. Controllers switch power to signal lanterns and determine the sequence of display for each set of lights, operating under the safety requirement that no two conflicting approaches receive green signals simultaneously. A typical controller operates lights in sequences called \emph{phases}, which are dynamic length allocations of green light time to a set of non-conflicting flows at an intersection. \cite{papa2003review}. Typically, modern controllers include the following fixed or dynamic time allocations within a phase:
 
 \begin{itemize}
 \item \emph{late start time}, a fixed length of time a green light may be delayed for safety of other movements (e.g. pedestrian protection)
 \item \emph{minimum green time}, a fixed length of time that a phase must operate before changing
-\item \emph{inter-green time}, a fixed length of time required to operate amber and red signals at the end of a phase, typically at least 6 seconds. 
+\item \emph{intergreen time}, a fixed length of time required to operate amber and red signals at the end of a phase, typically at least 6 seconds. 
 \item \emph{extension green time}, a dynamic length of time allocated to a phase determined after all required fixed times have been deducted from the total phase tie. 
 \item \emph{maximum green time}, if the addition of the previous four time allocations exceeds the fixed maximum green time the phase is forced to change. 
 \end{itemize}
@@ -29,7 +29,7 @@ Car-to-car communication and car-to-controller communication has been researched
 Wireless communication between vehicles and signal controllers can provide more information at an earlier stage of approach than loop detectors, including characteristics of a vehicle (number of passengers, size, weight, type of activity), speed of approach and current position. Research in this field has explored the use of vehicle-to-vehicle communication for early warning safety systems, collision avoidance, and as a means of informing vehicle passengers about road network conditions; suggesting widespread benefits for use of the technology beyond traffic modeling at controlled intersections \cite{nadeem2004trafficview,yang2004vehicle}. 
 
 \chapter{PBTC Control Algorithm}
-\label{appendix:pbtc-control}
+\label{appendix:pbtc_algorithm}
 
 Pseudocode for the PBTC control algorithm described in \ref{sec:PBTCDesign} is given below. The algorithm determines whether a phase change sequence is required and if so, determines the length of time the current phase duration should be extended based on estimates of the delay and stopping cost incurred by vehicles up to $K$ seconds into the future.
 
@@ -108,7 +108,7 @@ A=<64>  B=36
 \chapter{Evaluation Intersections}
 \label{appendix:scats_intersections}
 
-Three intersections within the Wellington City central road network were selected as the basis for evaluation of this project. Figure ~\ref{intersectionmap} shows a map of Wellington City, marked with the location of the three intersections considered, Vivian Street and Victoria Street, Courtenay Place and Tory Street, and Karo Drive and Victoria Street. The intersections were selected based on the availability of logged data from the Wellington City Council, capability of the PBTSim simulator to model the intersections appropriately, and variations in traffic volume to investigate the performance of the PBTC control algorithm in multiple realistic traffic scenarios. The map shown was generated using Google Maps \cite{googlemaps}.
+Three intersections within the Wellington City central road network were selected as the basis for evaluation of this project. Figure \ref{intersectionmap} shows a map of Wellington City, marked with the location of the three intersections considered, Vivian Street and Victoria Street, Courtenay Place and Tory Street, and Karo Drive and Victoria Street. The intersections were selected based on the availability of logged data from the Wellington City Council, capability of the PBTSim simulator to model the intersections appropriately, and variations in traffic volume to investigate the performance of the PBTC control algorithm in multiple realistic traffic scenarios. The map shown was generated using Google Maps \cite{google-maps}.
 
 \begin{figure}[]
 \centering
@@ -120,7 +120,7 @@ Three intersections within the Wellington City central road network were selecte
 
 \section{SCATS Representations} 
 
-Figure ~\ref{scats_intersections} shows the three evaluation intersections used during evaluation of the PBTC system as represented in the SCATS system used by Wellington City Council. Screenshots were provided by Wellington City Council traffic engineers. The SCATS phase configuration for each intersection is shown to the left of each figure. Note that in the case of Courtenay-Tory, phases A, B, C, E, E1, and E2 are considered as a single phase in the SCATS log files and PBTSim configuration.
+Figure \ref{scats_intersections} shows the three evaluation intersections used during evaluation of the PBTC system as represented in the SCATS system used by Wellington City Council. Screenshots were provided by Wellington City Council traffic engineers. The SCATS phase configuration for each intersection is shown to the left of each figure. Note that in the case of Courtenay-Tory, phases A, B, C, E, E1, and E2 are considered as a single phase in the SCATS log files and PBTSim configuration.
 
 
 \begin{figure}[]
@@ -152,7 +152,7 @@ Figure ~\ref{scats_intersections} shows the three evaluation intersections used 
 
 \section{PBTSim Representations}
 
-Figure ~\ref{pbtsim_intersections} shows the visual representation of the three evaluation intersections within the PBTSim graphical user interface. All lanes catering for turning traffic have been omitted from each intersection and are not considered by this project. 
+Figure \ref{pbtsim_intersections} shows the visual representation of the three evaluation intersections within the PBTSim graphical user interface. All lanes catering for turning traffic have been omitted from each intersection and are not considered by this project. 
 
 \begin{figure}[]
 \centering
