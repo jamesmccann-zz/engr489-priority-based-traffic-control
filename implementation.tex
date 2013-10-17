@@ -15,7 +15,7 @@ A primary challenge of measuring and evaluating performance of an adaptive traff
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.35]{movsim-interface.png}
-	\caption{ A screenshot of the MovSim Graphical User Interface running a simulation of the four-way intersection scenario used during design and evaluation of the PBTC control system. }
+	\caption[A screenshot of the PBTSim user interface showing an example intersection.]{ A screenshot of the PBTSim Graphical User Interface running a simulation of the four-way intersection scenario used during design and evaluation of the PBTC control system. }
 \label{pbtsim-interface}
 \end{figure}
 
@@ -30,7 +30,7 @@ MovSim allows for customisable phases to be configured in the project descriptio
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.60]{movsim-phasesv2.pdf}
-	\caption{ A diagram of the available phase states and transitions of a ``two-phase'' intersection configuration within the MovSim simulator. MovSim requires intergreen and all-red periods to be configured as individual phases and does not allow a simple mechanism for skipping, repeating, or alternating the order of configured phases. }
+	\caption[A diagram of a set of phase states for a two-phase intersection within the MovSim simulator.]{ A diagram of the available phase states and transitions of a ``two-phase'' intersection configuration within the MovSim simulator. MovSim requires intergreen and all-red periods to be configured as individual phases and does not allow a simple mechanism for skipping, repeating, or alternating the order of configured phases. }
 \label{movsimphasediagram}
 \end{figure}
 
@@ -42,7 +42,7 @@ To solve this problem, a new phase model was developed for the PBTSim simulator 
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.60]{pbtsim-phases.pdf}
-	\caption{ A diagram of the available phase states and transitions of a ``two-phase'' configuration within the PBTSim simulator. Integreen and all-red times are encoded as properties of each phase and the scheduling of these phases is moved to application logic to simplify the phase configuration. }
+	\caption[A diagram of a set of phase states for a two-phase intersection within the PBTSim simulator.]{ A diagram of the available phase states and transitions of a ``two-phase'' configuration within the PBTSim simulator. Integreen and all-red times are encoded as properties of each phase and the scheduling of these phases is moved to application logic to simplify the phase configuration. }
 \label{movsimphasediagram}
 \end{figure}
 
@@ -102,7 +102,7 @@ The ControlStrategy interface is called by a TrafficLightControlGroup class, whi
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.60]{controller_class_diagram.pdf}
-	\caption{ A UML class diagram showing the use of the strategy pattern between the TrafficLightControlGroup and ControlStrategy types. ControlStrategy is an interface defining methods required by the TrafficLightControlGroup to change the phase of a set of traffic lights. Three strategies implementing the ControlStrategy interface are shown. Each concrete strategy implementation has a different internal set of conditions to trigger phase changes. }
+	\caption[A UML class diagram of the PBTSim application architecture.]{ A UML class diagram showing the use of the strategy pattern between the TrafficLightControlGroup and ControlStrategy types. ControlStrategy is an interface defining methods required by the TrafficLightControlGroup to change the phase of a set of traffic lights. Three strategies implementing the ControlStrategy interface are shown. Each concrete strategy implementation has a different internal set of conditions to trigger phase changes. }
 \label{controllerclassdiagram}
 \end{figure}
 
@@ -148,15 +148,11 @@ Phase Duration ($s$) & Queue Clear Distance ($m$) \\
 \section{Design of SCATS Control Strategy}
 \label{sec:scats_strategy}
 
-% can use the SCATS data to determine arrivals and signal settings each cyclex
-Development of a SCATS representation is a requirement of the evaluation process of this project. As SCATS is deployed on most of the controlled intersections within New Zealand and uses an adaptive traffic control algorithm to respond to near real-time traffic demand, it is appropriate for experimental comparison with the PBTC control algorithm. The SCATS implementation developed for PBTSim is designed to recreate a realistic representation of real-world SCATS behaviour using an available log file of vehicle arrivals and allocated phase times at different intersections in Wellington City. An example of the SCATS log file format is shown in Appendix A.
+Development of a SCATS representation is a requirement of the evaluation process of this project. As SCATS is deployed on most of the controlled intersections within New Zealand and uses an adaptive traffic control algorithm to respond to near real-time traffic demand, it is appropriate for experimental comparison with the PBTC control algorithm. No test bed or performance evaluation software is available for SCATS, and as a result a direct comparison with the SCATS implementation is not possible. An alternative to direct comparison considered during the development of this project was to develop a simplified and approximate system that was based off the methodology of SCATS. The most limiting disadvantage of this design is the difficulty of evaluating how good of an approximation the simplified implementation of SCATS is without being able to benchmark against the real system, leading to potentially inaccurate comparisons. Previous research has used estimated control algorithms as an approximation of SCATS operation, although the accuracy of these approximations is not known \cite{akcelik1998scats}. Instead, this project focused on recreating the behaviour of a real-world SCATS system using logged data to simulate vehicle arrivals and phase timings.
 
-Each SCATS log file consists of an ordered sequence of data blocks for each single cycle of operation of a given traffic light controller, sent to SCATS by the controller at the end of each cycle. The cycle block contains state information required by SCATS to calculate the phase timings for the next cycle, including number of vehicle detector actuations per approach, i.e. the number of vehicles that entered the intersection on each approach; and the order and time of each of the phase splits run by the controller during that cycle. 
+The SCATS implementation developed for PBTSim is designed to recreate a realistic representation of real-world SCATS behaviour using SCATS log files to simulate real-world vehicle arrivals and allocated phase times. An example of the SCATS log file format is shown in \ref{appendix:scats_data_file}. Each SCATS log file consists of an ordered sequence of data blocks for each single cycle of operation of a given traffic light controller, sent to SCATS by the controller at the end of each cycle. The cycle block contains state information required by SCATS to calculate the phase timings for the next cycle, including number of vehicle detector actuations per approach, i.e. the number of vehicles that entered the intersection on each approach; and the order and time of each of the phase splits run by the controller during that cycle. 
 
-The design and implementation of a software package to simulate SCATS behaviour involved replicating the arrivals recorded by SCATS over the fixed period of the log, and developing a control strategy to operate phase times for each cycle of the log. Figure \ref{scatsclassdiagram} shows a class diagram overview of classes in PBTSim designed to add SCATS simulation capabilities. 
-
-% refactor this section
-The SCATSDataParser is a singleton class which waits for a prompt for data from a SCATSDataControlStrategy or TrafficSource instance. The parser reads a cycle block from the log file and returns a list of phases and their durations to the SCATSDataControlStrategy, and updates each TrafficSource with a new arrival flow rate based on the phase times and vehicle arrivals measured in current cycle being read from the SCATS log. The SCATSDataControlStrategy allocates phases in order based on the list returned from the data parser and continues until the list is empty, at which point it requests another cycle and so forth.
+The design and implementation of a software package to simulate SCATS behaviour involved replicating the arrivals recorded by SCATS over the fixed period of the log, and developing a control strategy to operate phase times for each cycle of the log. The SCATSDataParser is a singleton Java class which waits for a prompt for data from a SCATSDataControlStrategy or TrafficSource instance and incrementally processes the phase time and vehicle arrivals from a SCATS log file. The parser reads a cycle block from the log file and returns a list of phases and their durations to the SCATSDataControlStrategy, and updates each TrafficSource with a new arrival flow rate based on the phase times and vehicle arrivals measured in current cycle being read from the SCATS log. The SCATSDataControlStrategy allocates phases in order based on the list returned from the data parser and continues until the list is empty, at which point it requests another cycle and so forth.
 
 % good up to here
 \subsection{Vehicle Arrivals}

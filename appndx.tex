@@ -20,14 +20,16 @@ A \emph{cycle} (or \emph{plan}) is an ordered sequence of one or more phases whi
 An intersection has a given \emph{capacity}, defined as the maximum sustainable flow rate at which vehicles or pedestrians can travel through the intersection in a given time period. Capacity is dependant on the geometric layout of an intersection (e.g. width of road, number of lanes), driving and surface conditions, and traffic conditions. The \emph{degree of saturation} of an intersection is a ratio of arrival flow rate with respect to capacity of each approach for a given period. Arrival flow rate, also called \emph{demand flow}, refers to the number of vehicles or pedestrians arriving during a given period, measured from the back of a queue \cite{sidraglossary}. A section of road is said to be saturated if the traffic flow is equivalent to the capacity of the road at a given speed, such that any increase in flow will have a negative impact on the flow through the system. Any section of road where demanded traffic flow exceeds capacity is said to be \emph{congested} \cite{wallis2013costs}.
 
 \chapter{Inter-Vehicle Communication}
+\label{appendix:inter-vehicle-comms}
 
-The ubiquity of mobile communication devices and modern wireless capabilities have offered new possibilities for inter-vehicle communication within road networks. Previous research suggests that short-range wireless communication devices installed in road vehicles can be used to form mobile ad-hoc networks between near proximity clusters of traffic \cite{adaptive2007grad,nadeem2004trafficview,yang2004vehicle}.
+The ubiquity of mobile communication devices and modern wireless capabilities have offered new possibilities for inter-vehicle communication within road networks. Previous research suggests that short-range wireless communication devices installed in road vehicles can be used to form mobile ad-hoc networks between near proximity clusters of traffic \cite{adaptive2007grad,nadeem2004trafficview,yang2004vehicle}. Dedicated short-range communication (DSRC) is a standard for vehicle-to-vehicle and vehicle-to-infrastructure communication, currently under active development in the United States\cite{dsrc2011}.
 
-\citeasnoun{adaptive2007grad} discuss an implementation for car-to-car communication and car-to-controller communication as a replacement for loop detection used by adaptive traffic controllers. In the author's implementation, vehicles periodically transmit information about themselves and other nearby vehicles to a traffic controller using one-hop broadcasts. A traffic signal controller maintains a record of each known vehicle within range and optimises cycle length and phase timings based for the succeeding phase based on real-time information from each approach. Experimentation results of the study suggest that adaptive traffic control using a simple traffic actuated method out-performs a predetermined phase controller by a significant factor when total intersection delay is the primary measure of effectiveness at an intersection. While these results are promising, the work is limited in scope by the use of a predetermined phase time controller as a baseline for experimentation. The increase in performance measured by the authors does not take into account the advantages of existing traffic actuated or adaptive controller schemes over an isolated, fixed-cycle controller which are likely to be significant. 
+Car-to-car communication and car-to-controller communication has been researched as a replacement for loop detection used by adaptive traffic controllers \cite{adaptive2007grad}. In this implementation, vehicles periodically transmit information about themselves and other nearby vehicles to a traffic controller using one-hop broadcasts. A traffic signal controller maintains a record of each known vehicle within range and optimises cycle length and phase timings based for the succeeding phase based on real-time information from each approach. Experimentation results suggest that adaptive traffic control using a simple traffic actuated method out-performs a predetermined phase controller by a significant factor when total intersection delay is the primary measure of effectiveness at an intersection. While these results are promising, the work is limited in scope by the use of a predetermined phase time controller as a baseline for experimentation. The increase in performance measured by the authors does not take into account the advantages of existing traffic actuated or adaptive controller schemes over an isolated, fixed-cycle controller which are likely to be significant. 
 
-Wireless communication between vehicles and signal controllers can provide more information at an earlier stage of approach than loop detectors, including characteristics of a vehicle (number of passengers, size, weight, type of activity), speed of approach and current position. Research in this field has explored the use of vehicle-to-vehicle communication for early warning safety systems, collision avoidance, and as a means of informing vehicle passengers about road network conditions; suggesting widespread benefits for use of the technology beyond traffic modeling at controlled intersections \cite{nadeem2004trafficview,yang2004vehicle}.
+Wireless communication between vehicles and signal controllers can provide more information at an earlier stage of approach than loop detectors, including characteristics of a vehicle (number of passengers, size, weight, type of activity), speed of approach and current position. Research in this field has explored the use of vehicle-to-vehicle communication for early warning safety systems, collision avoidance, and as a means of informing vehicle passengers about road network conditions; suggesting widespread benefits for use of the technology beyond traffic modeling at controlled intersections \cite{nadeem2004trafficview,yang2004vehicle}. 
 
 \chapter{PBTC Control Algorithm}
+\label{appendix:pbtc-control}
 
 Pseudocode for the PBTC control algorithm described in \ref{sec:PBTCDesign} is given below. The algorithm determines whether a phase change sequence is required and if so, determines the length of time the current phase duration should be extended based on estimates of the delay and stopping cost incurred by vehicles up to $K$ seconds into the future.
 
@@ -111,12 +113,13 @@ Three intersections within the Wellington City central road network were selecte
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.5]{intersection-map.pdf}
-	\caption{ A map of Wellington City with the three evaluation intersections marked. }
+	\caption[A map of Wellington City showing intersections used for evaluation]{ A map of Wellington City showing the intersections of Vivian Street and Victoria Street, Courtenay Place and Tory Street, and Karo Drive and Victoria Street marked. }
 \label{intersectionmap}
 \end{figure}
 
 
 \section{SCATS Representations} 
+
 Figure ~\ref{scats_intersections} shows the three evaluation intersections used during evaluation of the PBTC system as represented in the SCATS system used by Wellington City Council. Screenshots were provided by Wellington City Council traffic engineers. The SCATS phase configuration for each intersection is shown to the left of each figure. Note that in the case of Courtenay-Tory, phases A, B, C, E, E1, and E2 are considered as a single phase in the SCATS log files and PBTSim configuration.
 
 
@@ -143,7 +146,7 @@ Figure ~\ref{scats_intersections} shows the three evaluation intersections used 
   \caption{Karo-Victoria}
   \label{fig:sub1}
 \end{subfigure}%
-\caption{ Intersections of Vivian-Victoria, Courtenay-Tory, and Karo-Victoria as represented in the SCATS system. }
+\caption{ Screenshots of the Vivian-Victoria, Courtenay-Tory, and Karo-Victoria intersections as represented in the SCATS system. }
 \label{scats_intersections}
 \end{figure}
 
@@ -174,7 +177,7 @@ Figure ~\ref{pbtsim_intersections} shows the visual representation of the three 
   \caption{Karo-Victoria}
   \label{fig:sub1}
 \end{subfigure}%
-\caption[Intersections of Vivian-Victoria, Courtenay-Tory, and Karo-Victoria as represented in the PBTSim simulator.]{ Intersections of Vivian-Victoria, Courtenay-Tory, and Karo-Victoria as represented in the PBTSim simulator.  }
+\caption[Screenshows of the Vivian-Victoria, Courtenay-Tory, and Karo-Victoria intersections as represented in the PBTSim simulator.]{ Intersections of Vivian-Victoria, Courtenay-Tory, and Karo-Victoria as represented in the PBTSim simulator.  }
 \label{pbtsim_intersections}
 \end{figure}
 

@@ -58,7 +58,7 @@ Given the kinetic energy of an approaching vehicle is known, the litres of fuel 
 	\label{fuelconsump}
 \end{align}
 
-Where $c_\text{s}$ is the estimated cost of stopping a given vehicle, $m$ and $v$ are the mass and velocity of the vehicle respectively, $\gamma$ is the engine efficiency coefficient for the vehicle engine (typically between 0.25-0.35), $w_{cal}$ is the calorimetric energy density of the engine's fuel, and $p_{f\text{/}\ell}$ is the price per litre of fuel that is being burned by the vehicle's engine.
+Where $c_\text{s}$ is the estimated cost of stopping a given vehicle, $m$ and $v$ are the mass and velocity of the vehicle respectively, $\gamma$ is the engine efficiency coefficient for the vehicle engine (typically between 0.25-0.35 for passenger cars), $w_{cal}$ is the calorimetric energy density of the engine's fuel, and $p_{f\text{/}\ell}$ is the price per litre of fuel that is being burned by the vehicle's engine.
 
 This physics based consumption model is only an approximation of the actual fuel consumption of approaching vehicles, but appropriately differentiates between light and heavy vehicles. More sophisticated estimations of fuel consumption would be desirable in practice and could be achieved through physics based models, or online learning of accurate measures of fuel consumption communicated by real vehicles to a traffic controller after each vehicle has departed an intersection using a reinforcement learning approach.
 
@@ -79,7 +79,7 @@ The economic cost of delay to the vehicle occupants is calculated using an NZTA 
 
 % equation here
 \begin{equation}
-	c_\text{d} &= t ^{s(u)} * 0.007(\frac{u}{3}) * p 
+	c_\text{d} &= t ^{s(u)} \times 0.007(\frac{u}{3}) \times p 
 	\label{delaycostequation}
 \end{equation}
 
@@ -105,7 +105,7 @@ The PBTC system assumes all urgency values are constant and do not change during
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.65]{delay_cost_per_urgency.eps}
-	\caption{Cost of delay per time for a range of occupant urgency values, from time of zero seconds up to sixty seconds. }
+	\caption{Relationship between cost of delay and time for each passenger urgency value, for up to sixty seconds. }
 \label{delaycosturgency}
 \end{figure}
 
@@ -132,7 +132,7 @@ The 150 metre broadcast window is designed to allow PBTC controller is able to r
 \begin{figure}[]
 \centering
 	\includegraphics[scale=0.5]{intersection_diagram.eps}
-	\caption{ Plan of a simple four way intersection showing an approaching vehicle communicating with a PBTC controller. The distance of initial communication is shown as 150 metres. The position of stop-line detectors typically used by SCATS systems are shown in red. The PBTC controller is able to adapt to vehicle actuations in advance of the vehicle's arrival at the stop line. }
+	\caption[Plan of a simple four way intersection showing an approaching vehicle communicating with a traffic controller.]{ Plan of a simple four way intersection showing an approaching vehicle communicating with a PBTC controller. The distance of initial communication is shown as 150 metres. The position of stop-line detectors typically used by SCATS systems are shown in red. The PBTC controller is able to adapt to vehicle actuations in advance of the vehicle's arrival at the stop line. }
 \label{intersectiondiagram}
 \end{figure}
 

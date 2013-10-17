@@ -5,7 +5,7 @@
 \contentsline {chapter}{\numberline {2}Background and Related Work}{5}
 \contentsline {section}{\numberline {2.1}Sydney Coordinated Adaptive Traffic System}{5}
 \contentsline {section}{\numberline {2.2}Splits-Cycle-Offsets-Optimization-Technique}{6}
-\contentsline {section}{\numberline {2.3}Rolling Horizon Optimisation}{6}
+\contentsline {section}{\numberline {2.3}Rolling-Horizon Optimisation}{6}
 \contentsline {chapter}{\numberline {3}Design}{9}
 \contentsline {section}{\numberline {3.1}Priority Modeling}{9}
 \contentsline {subsection}{\numberline {3.1.1}Operational Stopping Cost}{10}
@@ -28,24 +28,24 @@
 \contentsline {section}{\numberline {4.7}Design of Vehicle Actuated Control Strategy}{25}
 \contentsline {chapter}{\numberline {5}Evaluation}{27}
 \contentsline {section}{\numberline {5.1}Methodology}{27}
-\contentsline {section}{\numberline {5.2}Experimental Configuration}{28}
+\contentsline {section}{\numberline {5.2}Experimental Configuration}{27}
 \contentsline {section}{\numberline {5.3}Traffic Flow}{28}
 \contentsline {section}{\numberline {5.4}Delay Time and Cost}{29}
-\contentsline {section}{\numberline {5.5}Incurred Stopping Cost}{35}
-\contentsline {section}{\numberline {5.6}Overall Incurred Costs}{38}
-\contentsline {section}{\numberline {5.7}Discussion}{40}
-\contentsline {subsection}{\numberline {5.7.1}Validity}{42}
-\contentsline {subsubsection}{Priority Modeling for Cost Estimation}{42}
-\contentsline {subsubsection}{SCATS Log Data}{42}
-\contentsline {chapter}{\numberline {6}Summary}{45}
-\contentsline {section}{\numberline {6.1}Contributions}{45}
-\contentsline {section}{\numberline {6.2}Future Work}{45}
-\contentsline {section}{\numberline {6.3}Outcomes}{46}
-\contentsline {chapter}{Appendices}{49}
-\contentsline {chapter}{\numberline {A}Terminology}{51}
-\contentsline {chapter}{\numberline {B}Inter-Vehicle Communication}{53}
-\contentsline {chapter}{\numberline {C}PBTC Control Algorithm}{55}
-\contentsline {chapter}{\numberline {D}SCATS Data File Format}{57}
-\contentsline {chapter}{\numberline {E}Evaluation Intersections}{59}
-\contentsline {section}{\numberline {E.1}SCATS Representations}{59}
-\contentsline {section}{\numberline {E.2}PBTSim Representations}{59}
+\contentsline {section}{\numberline {5.5}Incurred Stopping Cost}{34}
+\contentsline {section}{\numberline {5.6}Overall Incurred Costs}{37}
+\contentsline {section}{\numberline {5.7}Discussion}{39}
+\contentsline {subsection}{\numberline {5.7.1}Validity}{41}
+\contentsline {subsubsection}{Priority Modeling for Cost Estimation}{41}
+\contentsline {subsubsection}{SCATS Log Data}{41}
+\contentsline {chapter}{\numberline {6}Summary}{43}
+\contentsline {section}{\numberline {6.1}Contributions}{43}
+\contentsline {section}{\numberline {6.2}Future Work}{43}
+\contentsline {section}{\numberline {6.3}Outcomes}{44}
+\contentsline {chapter}{Appendices}{47}
+\contentsline {chapter}{\numberline {A}Terminology}{49}
+\contentsline {chapter}{\numberline {B}Inter-Vehicle Communication}{51}
+\contentsline {chapter}{\numberline {C}PBTC Control Algorithm}{53}
+\contentsline {chapter}{\numberline {D}SCATS Data File Format}{55}
+\contentsline {chapter}{\numberline {E}Evaluation Intersections}{57}
+\contentsline {section}{\numberline {E.1}SCATS Representations}{57}
+\contentsline {section}{\numberline {E.2}PBTSim Representations}{57}

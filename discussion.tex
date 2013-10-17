@@ -1,18 +1,15 @@
 \chapter{Summary}
- 
-Evaluation has been conducted comparing the performance of the PBTC, SCATS, and Vehicle Actuated control strategies using the PBTSim simulation tool developed during this project.
 
-%Advances in wireless technologies suggest that inter-vehicle communication technology may be commonplace on New Zealand roads within the next decade. By simulating the possibilities of a fully connected transport system, we hope to encourage development in this area.
+This project has explored the use of a microscopic vehicle priority model as a basis for a new method of adaptive traffic control designed to reduce the costs incurred by vehicles forced to stop and wait at a controlled intersection. Evaluation has been conducted comparing the performance of the PBTC, SCATS, and Vehicle Actuated control strategies using the PBTSim simulation tool developed during this project. Results of evaluation suggest the PBTC system can achieve significantly reduced delay costs over SCATS and Vehicle Actuated control strategies in varying traffic volumes.
 
 %Extensions to such a system could also calculate and inform a driver of the best route to the destination based on the passenger urgency, i.e., routing all low priority drivers to a more congested route and redirecting high urgency vehicles to a faster alternative.
-
 
 \section{Contributions}
 
 This project has made three primary contributions to the field of traffic signal control research:
 
 \begin{itemize}
-\item \textbf{Vehicular Priority Model}, a model for estimating the priority of individual vehicles within a road network; based upon passenger urgency, cost of stoppage, cost of delay, and passenger occupancy.
+\item \textbf{Vehicular Priority Model}, a model for estimating the priority of individual vehicles within a road network; based upon passenger urgency, cost of stopping, cost of delay, and passenger occupancy.
 \item \textbf{Priority Based Traffic Control Algorithm}, an on-line algorithm for determining signal phase times at a controlled intersection based on priority of real-time traffic, determined by one-way, vehicle-controller communication. 
 \item \textbf{Open-Source Simulator Implementation}, an implementation of the Priority Based Traffic Control algorithm above, as well as modifications to the MovSim Traffic Simulator within a fork called PBTSim, that allows for multiple traffic control strategies to be evaluated based on the developed vehicular priority model.
 \end{itemize}
@@ -29,11 +26,15 @@ Finally, direct comparison between the PBTC control algorithm and industry alter
 
 \section{Outcomes}
 
+
 Delayed travel and forced vehicle stops are inevitable when opposing flows of traffic share demand over an intersection of two links within a wider road network, adding unseen implicit costs to travel for road users. The PBTC system is designed to reduce the overall costs of delay, and costs of stopping for vehicles traveling through a controlled intersection; using a vehicle priority model to evaluate economic costs incurred to individual vehicles within a simulation environment.
 
 The results of experimental evaluation, presented in Chapter ~\ref{chapter:evaluation}, show the PBTC control algorithm is able to achieve significantly reduced incurred delay and stopping costs, when compared to the Vehicle Actuated strategy and SCATS representation developed during this project, for all vehicles traveling through the simulated intersections used for experimental evaluation.
 
 The PBTC system achieves reduced delay times, without significant increases to the cost of stopping for all vehicles approaching an intersection, while prioritising traffic based on urgency and reducing the total trip time for vehicles whose transit is deemed to be urgent. By considering the urgency, cost of delay, and cost of stopping vehicles approaching an intersection, the PBTC control algorithm can make cost-minimising decisions regarding allocation of green time to opposing flows of traffic. Once the decision to make a phase change has been made, the lookahead capability of the PBTC control algorithm is designed to find a cost-minimal extension of the currently displayed green time that will minimise this change with respect to the cost of delaying queued vehicles, and cost of stopping and delaying approaching vehicles.
+
+The design of the PBTC system produced by this project assumes that the capability for wireless communication between vehicles on a road network and network infrastructure exists. Advances in wireless technologies suggest that inter-vehicle communication technology may be commonplace on New Zealand roads within the next decade. By simulating the possibilities of a fully connected transport system, we hope to encourage development in this area.
+
 
 
 
