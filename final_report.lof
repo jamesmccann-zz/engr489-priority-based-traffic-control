@@ -5,7 +5,7 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Plan of a simple four way intersection showing an approaching vehicle communicating with a traffic controller.}}{14}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces A screenshot of the PBTSim user interface showing an example intersection.}}{18}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces A diagram of a set of phase states for a two-phase intersection within the MovSim simulator.}}{18}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A diagram of a set of phase states for a two-phase intersection within the MovSim simulator.}}{19}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces A diagram of a set of phase states for a two-phase intersection within the PBTSim simulator.}}{19}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces A UML class diagram of the PBTSim application architecture.}}{22}
 \addvspace {10\p@ }
